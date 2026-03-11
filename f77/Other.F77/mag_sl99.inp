@@ -1,0 +1,52 @@
+Batch mode flag (1:Yes / 0:No).........|1
+Name for output files (.DAT .TBL).[1-8]|test1_99
+Name of top layer profile (.PRF)..[1-8]|sl
+                                       |;
+:Comment line-1........................|
+:Comment line-2........................|
+:Comment line-3........................|
+                                       |;
+:Substrate Code...................code=|Silicon
+:Database option: 0=X0h................|
+:                 1=Henke..............|;
+:                 2=Henke+.............|;
+:                 3=Cowan..............|;
+:                 4=Cowan+.............|;
+:Substrate density(g/cm^3)[option].rho=|
+:...... or x0.......................x0=|
+:Substrate Debye-Waller correction  W0=|
+:Substrate roughness (Angstrem)..sigma=|
+:.......or transition layer (A).....tr=|
+:Substr. magnetization vector: Mk,Ms,Mp| 0., 0., 1.
+:..(k=k0=x, s=sigma=y, p=pi=z_external)|;
+:Substrate F_10 {(3*wave/8*pi)*F10/r0}.| (0.,0.)
+:Substrate F_11 {(3*wave/8*pi)*F11/r0}.| (0.,0.)
+:Substrate F_1T {(3*wave/8*pi)*F1T/r0}.| (0.,0.)
+:Substr.magnetic atoms density (1/cm^3)| 0.,           1.e+10
+:Substr.magnetic atoms share (0.-1.)...| 0.
+                                       |;
+:X-ray data: 1=wave, 2=energy, 3=line..| 3
+:X-ray wavelength (A) or energy (keV)..|
+:Name of X-ray line....................| Cu-Ka1
+:Incident polarization: 1-sigma........| 1
+:.......................2-pi...........|;
+:.......................3-circular.....|;
+:.......................4-skew (cos)...|;
+:Angle between skew & sigma (degr.)....|
+                                       |;
+:Number of transition sublayers (1-50).| 21
+:Transition law: 0:cos 1:linear........|
+                                       |;
+:Angular units: 0-degr.................| 5
+:...............1-min..................|;
+:...............2-mrad.................|;
+:...............3-sec..................|;
+:...............4-urad.................|;
+:...............5-1/Angstrom(qz-scan)..|;
+:Incidence angle limits (Units)........|  0., 4.
+:Number of incidence angle points......| 401
+                                       |;
+:Request wavefields (Y:1/N:0)..........|  0,              1
+:            (this disables account for|;
+:        roughness & transition layers)|;
+:Disable A,B,C (0=Enable, 1=Disable)...| 0, 0, 0

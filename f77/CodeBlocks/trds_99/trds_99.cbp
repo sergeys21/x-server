@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="trds_99" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/trds_99" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/trds_99" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-frecursive" />
+		</Compiler>
+		<Linker>
+			<Add library="../stepa77/libstepa77.a" />
+			<Add library="../serve77/libserve77.a" />
+		</Linker>
+		<Unit filename="../../X-ray2.F77/corrfun2.for" />
+		<Unit filename="../../X-ray2.F77/rd99prf0.for" />
+		<Unit filename="../../X-ray2.F77/rfms_sss.for" />
+		<Unit filename="../../X-ray2.F77/rfms_urd.for" />
+		<Unit filename="../../X-ray2.F77/trds_99.for" />
+		<Unit filename="../../X-ray2.F77/trsu0_99.for" />
+		<Unit filename="../../X-ray2.F77/trsu1_99.for" />
+		<Unit filename="../../X-ray2.F77/trsu2r97.for" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

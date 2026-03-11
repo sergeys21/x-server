@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This site provides WEB interfaces to software
+    calculating x-ray scattering factors, x-ray dynamical diffraction and
+    specular reflection from multilayers and x-ray scattering from interface
+    roughness at grazing angles.">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray reflection, X-ray scattering, crystal data, scattering factors,
+    X-ray crystallography, X-ray material science, X-ray analysis,
+    strained crystals, multilayers, roughness">
+    <title>X-ray Server Change LOG</title>
+</head>
+<body onLoad="window.focus()">
+
+<h3 style="text-align:center;"><b>What is alpha_max and when should I use it?</b></h3>
+
+<p>This parameter targets systems with very large strains, like da/a &gt; 0.1.</p>
+
+<p>In the Bragg diffraction, it is convenient to express the Bragg deviations</p>
+
+<p style="text-align:center;"><i>alpha=[(k+h)<sup>2</sup>-k<sup>2</sup>]/k<sup>2</sup></i></p>
+
+<p>in the units of the Bragg peak FWHM that has the same order of magnitude as the
+crystal susceptibility |<i>x</i><sub>h</sub>|. Then, the Bragg reflectivity of
+a layer is ~1/<i>alpha</i><sup>2</sup>. Given that for a typical Bragg reflections
+|<i>x</i><sub>h</sub>|~10<sup>-6</sup> and the da/a parameter contributes to
+<i>alpha</i> linearly, then the strain of da/a~0.1 corresponds to very large
+<i>alpha</i>~10<sup>5</sup>|<i>x</i><sub>h</sub>|, or the reflectivity of
+~10<sup>-10</sup>. On one hand, such small intensities may be neglected, and
+on the other hand, if trying to take them into account, one may face numerical
+errors in the calculations at large <i>alpha</i> since the <i>alpha</i> parameter
+enters into some elements of the scattering matrices while their other elements
+are constituted by the <i>x</i><sub>h</sub> only.</p>
+
+<p>Let us consider a simple bi-layer system presented on Fig.1.</p>
+
+<p style="text-align:center;"><img src="images/alpha_max_explained.gif" alt="Alpha-max-explained"></p>
+
+<p>Such a system gives the Bragg curve as presented on Fig.2, where the parameters of
+calculations are: t=5000A, wave=1.54A, code=Silicon, hkl=(111),
+da/a&nbsp;=&nbsp;-0.5&nbsp;=&nbsp;-0.625*|<i>x</i><sub>h</sub>|*10<sup>5</sup>.</p>
+
+<p style="text-align:center"><img src="images/alpha_max_example1.png" alt="Alpha-max-example1"></p>
+
+<p>In this example the Bragg peaks from the layer and the substrate are well
+separated and when the incident X-rays are tuned to the substrate peak, the
+reflection from the layer may be neglected, i.e. the layer may be treated as
+amorphous, and vice versa in the vicinity of the layer Bragg peak.</p>
+
+<p>The dynamical cutoff is handled by the parameter <b>alpha_max</b>. If at a particular
+point of the Bragg curve the Bragg deviation |<i>alpha</i>| exceeds <b>alpha_max</b>,
+the layer is dynamically "converted" into "amorphous". However, if all the
+layers in the target system happen to be far from their Bragg condition, the
+threshold is not enforced on the layer(s) with the minimum |alpha| among all
+the layers. This avoids zero intensity at the calculations of wide-range
+Bragg curves from an unstrained single crystal. In all cases any manipulations
+with layers are reported in the calculations log file (the TBL file).</p>
+
+<p>Normally the <b>alpha_max</b> parameter does not need be touched. One only
+needs to tweak it when the calculation fails with the error message like:</p>
+
+<pre>
+  GID_SLm: the job was aborted due to numerical
+  errors detected while calculating reflection
+  coefficient(s).
+  This may be caused by precision loss because
+  of weak reflection (check the order of xh!)
+  or large deviations from the Bragg condition.
+  Check GIDxxxxx.TBL for more details.
+ </pre>
+
+<p>The dynamical cutoff must be used with care on the systems with the gradient of
+da/a from layer to layer. In such cases an important interference between the
+layers with close da/a values might be lost. In the case when the cutoff is
+applied to a gradient system, it is recommended to repeat the calculations
+using different values of <b>alpha_max</b> in order to study the effect of
+the approximation.</p>
+
+<p>It is not advised (although possible) to use  <b>alpha_max</b> &lt;
+10<sup>3</sup> since the program should not suffer from precision losses
+in this <i>alpha</i> range.</p>
+
+<p>Please also note that calculating the Bragg curves at very large <i>alpha</i>
+when the reflectivity is below |<i>x</i><sub>h</sub>|<sup>2</sup> violates the
+two-wave diffraction approximation and the results of such calculations must
+be treated with big precaution! This point is well illustrated by the following
+picture demonstrating that the right tail of the above calculated 111 Bragg
+curve overlaps with the 333 reflection from the same sample (the yellow line).</p>
+
+<p style="text-align:center"><img src="images/alpha_max_example2.png" alt="Alpha-max-example2"></p>
+
+<p>It is obvious from this example that the two-wave approximation is not
+applicable around the incidence angle of 44 degr. and at higher angles using
+the 111 reflection in the calculations is incorrect at all.</p>
+
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+</body>
+</html>

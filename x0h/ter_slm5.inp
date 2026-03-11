@@ -1,0 +1,44 @@
+Batch mode flag (1:Yes / 0:No).........|0
+Name for output files (.DAT .TBL).[1-8]|tertest
+Name of top layer profile (.PRF)..[1-8]|
+                                       |;
+|Comment line-1........................|
+|Comment line-2........................|
+|Comment line-3........................|
+                                       |;
+|Substrate Code...................code=|Silicon
+|Database option: [-1:8]...............|
+|               [-1]=Automatic.........|;
+|                [0]=X0h...............|;
+|                [1]=Henke.............|;
+|                [2]=Henke+............|;
+|                [3]=Cowan.............|;
+|                [4]=Cowan+............|;
+|                [5]=Windt.............|;
+|                [6]=Windt+............|;
+|                [7]=Chantler..........|;
+|                [8]=Chantler+.........|;
+|Substrate density(g/cm^3)[option].rho=|
+|...... or x0.......................x0=|
+|Substrate Debye-Waller correction..W0=|
+|Substrate roughness (Angstrem)..sigma=|
+|.......or transition layer (A).....tr=|
+                                       |;
+|X-ray data: 1=wave, 2=energy, 3=line..|3
+|X-ray wavelength (A) or energy (keV)..|
+|Name of X-ray line....................|  Cu-Ka1
+|X-ray polarization: 1-sigma, 2-pi.....|
+                                       |;
+|Number of transition sublayers (1-50).| 21
+|Transition law: 0:cos 1:linear........|
+                                       |;
+|Angular units: 0-degr/1-min/2-mrad....|0
+|......................3-sec/4-urad....|;
+|Incidence angle limits (Units)........|0 4
+|Number of incidence angle points......|401
+                                       |;
+|Standing waves (1=yes,0=no)...........| 1
+|Reference interface # (0=surface).....| 0
+|Offsets down from this interface (A)..| 0., 10.
+|...........................(from,to)..|;
+|Number of depth points................|41

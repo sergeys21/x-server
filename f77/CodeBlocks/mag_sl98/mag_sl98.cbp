@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mag_sl98" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/mag_sl98" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/mag_sl98" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-frecursive" />
+		</Compiler>
+		<Linker>
+			<Add library="../stepa77/libstepa77.a" />
+			<Add library="../serve77/libserve77.a" />
+		</Linker>
+		<Unit filename="../../X-ray2.F77/mag_sl98.for" />
+		<Unit filename="../../X-ray2.F77/mmre98_r.for" />
+		<Unit filename="../../X-ray2.F77/mmtra98r.for" />
+		<Unit filename="../../X-ray2.F77/rd99prfm.for" />
+		<Unit filename="../../X-ray2.F77/rfms_sss.for" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

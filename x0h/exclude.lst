@@ -1,0 +1,22 @@
+### This is an exclude list for rsync
+brl_build
+brls12
+cofu_dec
+cofu_enc
+### dbfix
+gid_slm5
+gid_slm7
+grd2dat
+grd2gnu
+grd2grd
+grdlog
+grdplot
+mag_sl98
+mag_sl99
+ter_slm5
+trds_99
+### wh
+x00_line
+x0h_line
+x0h_web
+x0p_web

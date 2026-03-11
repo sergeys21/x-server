@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="../brl_build/brl_build.cbp">
+			<Depends filename="../brls12/brls12.cbp" />
+			<Depends filename="../cofu_dec/cofu_dec.cbp" />
+			<Depends filename="../gid_slm5/gid_slm5.cbp" />
+			<Depends filename="../gid_slm7/gid_slm7.cbp" />
+			<Depends filename="../grd2dat/grd2dat.cbp" />
+			<Depends filename="../grd2gnu/grd2gnu.cbp" />
+			<Depends filename="../grd2grd/grd2grd.cbp" />
+			<Depends filename="../mag_sl98/mag_sl98.cbp" />
+			<Depends filename="../mag_sl99/mag_sl99.cbp" />
+			<Depends filename="../trds_99/trds_99.cbp" />
+			<Depends filename="../ter_slm5/ter_slm5.cbp" />
+			<Depends filename="../x0h_web/x0h_web.cbp" />
+			<Depends filename="../x0p_web/x0p_web.cbp" />
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../brls12/brls12.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../cofu_dec/cofu_dec.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../gid_slm7/gid_slm7.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../grd2dat/grd2dat.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../grd2gnu/grd2gnu.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../grd2grd/grd2grd.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../mag_sl98/mag_sl98.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../mag_sl99/mag_sl99.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../trds_99/trds_99.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../ter_slm5/ter_slm5.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../x0h_web/x0h_web.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../x0p_web/x0p_web.cbp">
+			<Depends filename="../stepa77/stepa77.cbp" />
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../stepa77/stepa77.cbp">
+			<Depends filename="../serve77/serve77.cbp" />
+		</Project>
+		<Project filename="../serve77/serve77.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

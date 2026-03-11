@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of x-ray scattering and absorption factors for different Bragg
+    reflections and other data related with x-ray diffraction by crystals">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray reflection, X-ray scattering, crystal data, scattering factors,
+    X-ray crystallography, X-ray material science, X-ray analysis">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray dynamical diffraction data on the Web</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+</script>
+</head>
+<body>
+<img src="images/x0h_search.jpg" border="1" style="display:block; margin:auto; max-width:347px; height:auto;" alt="X0h on the Web!">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border bgcolor="#c1c1c1"><tr>
+<th><a href="x0h_search.html#Intro">Intro</a></th>
+<!-- <th><a href="x0h_search.html#FAQ">&nbsp; FAQ &nbsp;</a></th> -->
+<th><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);">Conditions of use</a></th>
+<th><a href="/cgi/www_form.pl?template=x0p_form.htm">Access X0h-search</a></th>
+<th><a href="x0h.html"><b>Go to X0h</b></a></th>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+<p>This page is an interface to the Bragg planes search tool which is
+complimentary to the <a href="x0h.html"><b><i>X0h</i> program</b></a>
+calculating crystal susceptibilities <i>X<sub>0</sub></i> , <i>X<sub>h</sub></i>
+(<i>chi-zero , chi-h</i>) in x-ray wavelenth range. For better understanding of
+this tool please read first <a href="x0h.html">the description of
+<b><i>X0h</i></b></a>.</p>
+
+
+<p>The <b><i>X0h-search</i></b> is a part of my program called <b><i>X0h+</i></b>
+(or <b><i>X0p</i></b>). Currently existing as a MS DOS program only, <b><i>X0p</i></b>
+provides several tools for planning x-ray experiments like calculating
+<a href="javascript:void(0)" onClick="LargeFloat('images/x0p_stereo.jpg','Stereo',580,491);">
+crystal stereo projection diagrams</a> with graphical presentation of
+relative <i>X<sub>h</sub></i> values,
+<a href="javascript:void(0)" onClick="LargeFloat('images/x0p_search.jpg','Search',580,340);">
+searching for the Bragg reflections</a> under various conditions, and
+simulating Laue patterns of crystals with different surface orientations.</p>
+
+<p>The online version of <b><i>X0h-search</i></b> is available since June'2001.
+The parameters defining the search are:</p>
+<ol>
+<li>Miller indices range,</li>
+<li>Bragg angles range,</li>
+<li>Minimum intensity of Bragg reflection defined as |xh|/|x0|,</li>
+<li>Range of angles with respect to given plane (e.g. surface).</li>
+</ol>
+
+<p>The following 3 options are provided to search for the Bragg planes making
+certain angles with given crystallographic plane:</p>
+<ol>
+<li> Vary the Bragg planes indices, compute the angle <b>Q</b> with the
+surface, then verify the condition:
+
+        <div style="text-align:center"><b>Q1 &lt; Q &lt; Q2</b></div>
+
+where <b>Q1</b> and <b>Q2</b> are the parameters defining the search range.<br>&nbsp;</li>
+
+<li> Vary the Bragg planes indices, compute their Bragg angle <b>QB</b> and the
+angle <b>Q</b> with the surface, then verify the condition:
+
+        <div style="text-align:center"><b>Q1 &lt; Q &lt; QB - Q2</b></div>
+
+If <b>Q1</b>=<b>Q2</b>=0, this mode gives all the possible Bragg-case reflections.<br>&nbsp;</li>
+
+<li> Vary the Bragg planes indices, compute their Bragg angle <b>QB</b> and the
+angle <b>Q</b> with the surface, then verify the condition:
+
+        <div style="text-align:center"><b>QB - Q1 &lt; Q &lt; QB - Q2</b></div>
+
+If the values of <b>Q1</b> and <b>Q2</b> are  small, this option is very effective to
+search for extremely asymmetric reflections.</li>
+</ol>
+
+<p>Other possible applications of the search tool are:</p>
+<ul>
+<li>Find all the planes with the Bragg angles from <b>QB1</b> to <b>QB2</b>,</li>
+<li>Find all strong reflections,</li>
+<li>Find any planes in crystal which make angles from <b>Q1</b> to <b>Q2</b> with given plane...</li>
+</ul>
+
+<hr><br>
+
+<p><a href="/cgi/www_form.pl?template=x0p_form.htm"><b>Click here</b></a> to
+proceed to <b><i>X0h</i>-search</b> input form.</p>
+
+<hr><br>
+
+<table>
+<tr valign="middle">
+    <th><img src="images/classic.gif" alt="Beta" border="0"></th>
+    <td>Please, report problems and send comments to &nbsp;
+        <img src="images/sstepanov_email.gif" border="0" style="height:.9em; width:auto; vertical-align:middle;" alt="email">
+    </td>
+</tr>
+<tr valign="top">
+    <td><img src="images/x.gif" border="0" alt="X"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected  onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"              onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"       onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"           onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"           onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"           onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"              onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+</body>
+</html>

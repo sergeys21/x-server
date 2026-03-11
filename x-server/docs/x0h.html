@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of x-ray scattering and absorption factors for different Bragg
+    reflections and other data related with x-ray diffraction by crystals">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray reflection, X-ray scattering, crystal data, scattering factors,
+    X-ray crystallography, X-ray material science, X-ray analysis">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray dynamical diffraction data on the Web</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+</script>
+</head>
+<body>
+<img src="images/x0h_web.jpg" border="1" style="display:block; margin:auto; max-width:347px; height:auto;" alt="X0h on the Web!">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border bgcolor="#c1c1c1"><tr>
+<td><a href="x0h.html#Intro"><b>Intro</b></a></td>
+<td><a href="x0h.html#FAQ"><b>FAQ</b></a></td>
+<td><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);"><b>Conditions of use</b></a></td>
+<td><a href="/cgi/www_form.pl?template=x0h_form.htm"><b>Access X0h</b></a></td>
+<td><a href="x0h.html#Auto"><b>Automate & Fit</b></a></td>
+<td><a href="x0h_search.html"><b>Go to X0h-search</b></a></td>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+<p style="text-align:justify;">This page is an interface to my program <b><i>X0h</i></b> calculating crystal
+susceptibilities <i>X<sub>0</sub></i> , <i>X<sub>h</sub></i> (<i>chi-zero ,
+chi-h</i>) for x-ray scattering and Bragg diffraction. The program also
+provides the associated values of the Bragg diffraction peak FWHM, extinction
+and absorption lengths, which can be helpful in the analysis of respective
+experiments.</p>
+
+<p>The calculation consists of 5 steps:</p>
+<ol>
+<li>Calculation of scattering factors <i>f(s)</i>.</li>
+<li>Calculation of dispersion corrections <i>df'</i> and <i>df&quot;</i>.</li>
+<li>Calculation of dipole and quadrupole absorption cross sections.</li>
+<li>Calculation of Debye-Waller temperature factors.</li>
+<li>Finally, calculation of <i>X<sub>0</sub></i> and <i>X<sub>h</sub></i>
+    by summation of atomic scattering over crystal unit cell.</li>
+</ol>
+
+<p style="text-align:justify;"><span style="color:red;"><b>For step-1</b></span> <b><i>X0h</i></b> uses the 9-factors
+interpolation formula and the data from the International Tables for X-ray
+Crystallography [1].</p>
+
+<p style="text-align:justify;"><span style="color:red;"><b>For step-2</b></span> the International Tables contain data
+for characteristic x-ray lines only (Cr-Ka1, Fe-Ka1, Cu-Ka1, Mo-Ka1, and
+Ag-Ka1). Therefore, <b><i>X0h</i></b> interpolates them for intermediate
+wavelengths with the help of algorithm published in
+<a href="pub/Stepanov_CR_1991_08.pdf">[2]</a>.
+This algorithm evaluates the oscillator strengths of atoms at their
+absorption edges for each atom constituting the crystal unit cell. Then, Don
+Cromer's formula [3] for <i>df'</i> and <i>df&quot;</i> is applied.</p>
+
+<p><b><i>Please, note:</i></b></p>
+<ol>
+<li> Because of the interpolation, the data cannot reproduce XAFS and must
+be treated with care in a close vicinity of absorption edges. For user's
+reference <b><i>X0h</i></b> prints the closest absorption edge in structures
+at given x-ray energy.</li>
+
+<li> Since the characteristic x-ray lines are located in the energy range
+from 5 to 25 keV (from 0.5 to 2.5 Angstrom), strictly speaking, the
+applicability of the above interpolation technique is restricted by that
+range. However, due to using the efficient interpolation technique, in many
+cases the <b><i>X0h</i></b> data can be used in a wider range up to 0.1 -- 10
+Angstrom. In addition, the interface is provided to several freeware databases
+of dispersion corrections <i>df'</i> and <i>df&quot;</i> -- the ones by
+Henke-Gullikson-Davis [5], Brennan-Cowan [6], Windt [7], and Chantler/NIST [8].
+When one chooses to use external databases for <i>df'</i> and <i>df&quot;</i>,
+<b><i>X0h</i></b> replaces the data for 5 characteristic X-ray lines by that
+from the external database for five x-ray wavelengths nearest to the specified
+x-ray wavelength. Then, the same interpolation procedure [2] as described
+above is applied.</li>
+</ol>
+
+<p style="text-align:justify;"><img src="images/pi_pin.gif" alt=" "> For those who are
+interested:</p>
+<ul>
+<li>the Henke-Gullikson-Davis data file is downloadable from the
+    <a href="https://henke.lbl.gov/optical_constants/asf.html">LBL</a>,</li>
+<li>the Brennan-Cowan source code is available through the
+    <a href="https://www-ssrl.slac.stanford.edu/absorb.html">SSRL</a>,</li>
+<li>the Windt source code and data can be downloaded from
+    <a href="http://www.rxollc.com/idl/">Reflective X-ray Optics LLC</a>.</li>
+<li>the Chantler data can be downloaded from
+    <a href="https://github.com/usnistgov/FFAST.jl">Github</a> or via the
+    <a href="https://physics.nist.gov/PhysRefData/FFast/html/form.html">NIST web form</a>.</li>
+</ul>
+<p style="text-align:justify;">Also, most of those data files can be found at the
+<a href="http://ftp.esrf.fr/pub/scisoft/xop2.3/DabaxFiles/">ESRF DABAX server</a>.
+</p>
+
+<p style="text-align:justify;"><span style="color:red;"><b>For step-3</b></span> the method of calculating the
+absorption cross sections by Hildebrandt <i>et al</i> [4] is used for the most
+of elements with <i>Z</i>={6-54}. This works well for the 5-25 keV range and
+Hildebrandt technique is recommended for the calculations of Bragg diffraction
+from crystals since the dipole and quadrupole parts of absorption are provided.
+<br>
+
+Once the cross sections are calculated, they are used to evaluate the
+<i>Im(X<sub>0</sub>)</i> and <i>Im(X<sub>h</sub>)</i> values. <br>
+
+For heavy and light elements as well as outside the 5-25 keV energy range the
+dipole part of absorption cross section is calculated through <i>df&quot;</i>
+or several other techniques are applied [2], while the quadrupole part is taken
+zero. <br>
+
+<img src="images/pi_pin.gif" alt=" "> With the option to use external database for
+<i>df'</i> and <i>df&quot;</i> the cross section is always calculated from
+<i>df&quot;</i>.
+</p>
+
+<p style="text-align:justify;"><span style="color:red;"><b>For step-4</b></span> the input is taken from [1] either
+via the Debye temperature <i>T<sub>D</sub></i> , or the room-temperature
+value for the Debye coefficient <i>B</i> (depending on what is available in
+the references).</p>
+
+<p style="text-align:justify;"><span style="color:red;"><b>For step-5</b></span> <b><i>X0h</i></b> makes use of a
+simple expandable database containing the coordinates of atoms in unit cells
+for a number of crystal structures.</p>
+
+<table style="max-width:min(900px,90%); margin:auto;" border="2" cellpadding="6" cellspacing="0" bgcolor="#ffffff"><tr><td>
+<p><b><span style="color:red;">ATTENTION:</span> New structure submissions are
+welcome. Submissions are normally added to the database within a day. <a href="structure_submission_example.html">Click here</a>
+for instructions how to submit a structure. Please, e-mail structure descriptions
+to <img src="images/sstepanov_email_w.gif" border="0" style="height:.9em; width:auto; vertical-align:middle;" alt="email">.
+</b></p>
+</td></tr></table>
+
+<p style="text-align:justify;"><b><u>Acknowledgments:</u></b> The idea of this site appeared
+under the influence of excellent <a href="http://henke.lbl.gov/optical_constants/">
+x-ray server at LBL </a> maintained by <a href="mailto:EMGullikson@lbl.gov">Eric
+Gullikson</a>. Some part of the <b><i>X0h</i></b> code was written in
+collaboration with <a href="mailto:olug@inp.minsk.by">Olga Lugovskaya</a>.
+Finally, very systematic practical tests of this program were carried out by
+my wife and collaborator <a href="https://ls-cat.org/contacts.html">Elena
+Kondrashkina</a>.</p>
+
+<p><b><i><u>References</u></i></b></p>
+<ol>
+<!--[1]--><li>International Tables for X-ray Crystallography, vol.<b>C</b> - Kluwer Acad. Publ., Dordrecht/Boston/London, 1992.</li>
+<!--[2]--><li><a href="pub/Stepanov_CR_1991_08.pdf">O.M.Lugovskaya and S.A.Stepanov -- Sov. Phys. Crystallogr., vol.<b>36</b> (1991) p.478-481</a>.</li>
+<!--[3]--><li>D.T.Cromer -- Acta Crystallogr. vol.<b>18</b> (1965) p.17-23.</li>
+<!--[4]--><li>G.Hildebrandt, J.D.Stephenson, and H.Wagenfeld -- Z.Naturforschung, vol.<b>30a</b> (1975) p.697-707.</li>
+<!--[5]--><li>B.L.Henke, E.M.Gullikson, and J.C.Davis -- Atomic Data and Nuclear Data Tables, vol.<b>54</b> (1993) p.181-342.</li>
+<!--[6]--><li>S.Brennan and P.L.Cowan --  Rev. Sci. Instrum., vol.<b>63</b> (1992) p.850.</li>
+<!--[7]--><li>D.L.Windt -- Computers in Physics, vol.<b>12</b> (1998) p.360</li>
+<!--[8]--><li>C.T.Chantler -- J. Phys. Chem. Ref. Data vol.<b>29</b>(4) (2000), p.597-1048; C.T.Chantler -- J. Phys. Chem. Ref. Data vol.<b>24</b> (1995) p.71.</li>
+</ol>
+
+
+<br><hr><br>
+
+<h2><a name="FAQ"><u>Frequently asked questions</u></a></h2>
+
+<ol>
+<li><b>Why <i>x<sub>i0</sub></i> is positive?</b><br>
+    The sign of <i>x<sub>i0</sub></i> depends on the choice of exponent
+    representing x-ray waves in the media. One can present the waves
+    as either exp(i<b>kr</b>) or exp(-i<b>kr</b>) and both of these
+    choices can be found in the literature. In the former case
+    <i>X<sub>i0</sub></i> is positive and in the latter one it is negative.
+    The <i>X0h</i> provides the susceptibilities for the former case.
+    Please check which expansion you are using before applying the <i>X0h</i>
+    data.<br>&nbsp;</li>
+
+<li><b>Why <i>X0h</i> only gives the absolute values |<i>x<sub>rh</sub></i>|,
+    |<i>x<sub>ih</sub></i>| together with their phase difference? What it the
+    sign of these numbers?</b><br>
+    Both of <i>x<sub>rh</sub></i> and <i>x<sub>ih</sub></i> are generally complex
+    numbers with the phase dependent on the choice of the origin of coordinate
+    system in the unit cell. However, the scattered x-ray intensity is invariant
+    with respect to this phase factor and therefore it is not important. The
+    only important parameter is the phase difference between <i>x<sub>rh</sub></i>
+    and <i>x<sub>ih</sub></i>. <i>X0h</i> provides this value under the name
+    "Phase difference (x<sub>rh</sub> - x<sub>ih</sub>)" and it is divided by
+    PI=3.1416...<br>&nbsp;</li>
+
+<li><b>What equations are used to calculate the absorption factor of x-rays,
+    the critical angle for total external reflection, etc?</b><br>
+    <a href="javascript:void(0)" onClick="LargeFloat('images/x0h_help_0.gif','x0h_0',740,357);">Click
+    here</a> to see the equations used for <i>x<sub>0</sub></i>-related
+    parameters.<br>&nbsp;</li>
+
+<li><b>What equations are used to calculate the extinction length of x-rays,
+    the FWHM of Bragg peaks, etc?</b><br>
+    <a href="javascript:void(0)" onClick="LargeFloat('images/x0h_help_h.gif','x0h_h',599,740);">Click
+    here</a> to see the equations used for <i>x<sub>h</sub></i>-related
+    parameters.<br>&nbsp;</li>
+
+<li><b>Why the Bragg and Laue case extinction lengths are so different?</b><br>
+    <a href="javascript:void(0)" onClick="LargeFloat('images/x0h_help_h.gif','x0h_h',599,740);">Click
+    here</a> to see the equations used for <i>x<sub>h</sub></i>-related
+    parameters.<br>&nbsp;</li>
+
+</ol>
+
+
+<br><hr><br>
+
+<h2><a name="Access"><u>Access to <i>X0h</i></u></a></h2>
+
+<p style="text-align:justify;">
+<a href="/cgi/www_form.pl?template=x0h_form.htm"><b>Click here</b></a> to
+proceed to <b><i>X0h</i></b> input form.
+</p>
+
+
+<br><hr><br>
+
+<h2><a name="Auto"><u>Automation: Advanced Interaction with <i>X0h</i></u></a></h2>
+
+<p style="text-align:justify;">Access to <b><i>X0h</i></b> can go beyond simple Web forms presented
+on this server. With a little of programming on the client side <b><i>X0h</i></b>
+can be easily integrated into users scripts and other software. For example, a
+diffraction program written by a user can remotely access X-ray structure
+amplitudes provided by <b><i>X0h</i></b> or user can make a script plotting
+some <b><i>X0h</i></b> data depending on X-ray energy or Miller indices.
+</p>
+
+<p style="text-align:justify;">These advanced <b><i>X0h</i></b> features are available since 01/2006 due
+to adding keyworded text-form <b><i>X0h</i></b> output. The links below
+provide two example scripts that request parameters <i>X<sub>0r</sub></i> and
+<i>X<sub>0i</sub></i> for the Germanium crystal depending on the X-ray energy
+and save them into a file.</p>
+
+<table border="1" cellpadding="8">
+<tr valign="top">
+ <td><a href="scripting_examples/getX0h.sh">getX0h.sh</a></td>
+ <td>A bash script using curl, awk and sed. The script can natively run
+     on UNIX and MAC OS. To run it on Windows, you have to install a
+     Windows-10 sybsystem for Linux or <a href="https://www.cygwin.com">Cygwin</a>,
+     a freeware package providing many Linux utilities under Windows.
+ </td>
+</tr>
+<tr valign="top">
+ <td><a href="scripting_examples/getX0h.pl">getX0h.pl</a></td>
+ <td>A Perl script using Perl LWP module (WWW library for Perl). The latter
+     is usually a part of standard Perl distribution. The Perl interpreter
+     itself is default on UNIX and MAC OS. Freeware Perl distribution
+     for Windows can be installed either as a part of
+     <a href="https://www.cygwin.com">Cygwin</a>, or as a standalone package
+     available from <a href="https://www.activestate.com/products/activeperl/downloads/">ActiveState</a>.
+</td>
+</tr>
+</table>
+
+<p style="text-align:justify;">Both of the scripts have the same functionality and should produce the
+output file looking like this:</p>
+<pre>
+#Energy,      xr0,        xi0
+   10,  -0.18163E-04,   0.35103E-06
+   11,  -0.13836E-04,   0.24208E-06
+   12,  -0.12809E-04,   0.14516E-05
+</pre>
+
+<p style="text-align:justify;">For additional automation options see the
+<a href="automation.html">Automation/Fitting</a> web page.</p>
+
+<br><hr><br>
+
+<table>
+<tr valign="middle">
+    <th><img src="images/classic.gif" alt="Beta" border="0"></th>
+    <td>Please, report problems and send comments to
+    <img src="images/sstepanov_email.gif" border="0" alt="email" class="email" style="height:.9em; width:auto; vertical-align:middle;">.
+    </td>
+</tr>
+<tr valign="top">
+    <td><img src="images/x.gif" border="0" alt="X"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"      onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"         onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+
+</body>
+</html>

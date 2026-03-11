@@ -1,0 +1,67 @@
+|Batch mode flag (1:Yes/0:No)..........|1
+|Name for output files(.DAT,.TBL)[1-8].|brltest
+                                       |;
+|Comment line-1........................|line-1
+|Comment line-2........................|line-2
+|Comment line-3........................|line-3
+                                       |;
+|Units for miscut and scan angles......|0, 3
+|   (0-degr/1-min/2-mrad/3-sec/4-urad) |;
+                                       |;
+|Crystal code..........................|Germanium
+|Crystal thickness (um, < 1.0E+06).....|500.
+|Indices of external surface normal....|1 -1  0
+|Indices of surface miscut direction...|0  0  1
+|Surface miscut angle (Units-1)........|0.
+                                       |;
+|X-ray data: [1-5].....................|1
+|               [1]=wave               |;
+|               [2]=energy             |;
+|               [3]=line               |;
+|               [4]=coplanar case      |;
+|               [5]=reflection-3       |;
+|X-ray wave(A) / energy(keV) (mode 1/2)|1.000170761
+|Name of X-ray line (mode 3)...........|
+|Polarization: 0-both,1-angle,2~[k0*k1]|2
+|Polariz.(mode1): angle to Pi0 [degr]..|0.
+|X0h database option: [-1:8]...........|0
+|               [-1]=Automatic.........|;
+|                [0]=X0h...............|;
+|                [1]=Henke.............|;
+|                [2]=Henke+............|;
+|                [3]=Cowan.............|;
+|                [4]=Cowan+............|;
+|                [5]=Windt.............|;
+|                [6]=Windt+............|;
+|                [7]=Chantler..........|;
+|                [8]=Chantler+.........|;
+                                       |;
+|Reflections [=<12] contiguously:      |;
+|Indices of reflex 0 are always (0,0,0)|;
+|Indices of reflex 1...................| 8  0  0
+|Indices of reflex 2...................| 0  8  0
+|Indices of reflex 3...................| 0  4 -4
+|Indices of reflex 4...................| 0  4  4
+|Indices of reflex 5...................| 4  0 -4
+|Indices of reflex 6...................| 4  0  4
+|Indices of reflex 7...................| 4  8 -4
+|Indices of reflex 8...................| 4  8  4
+|Indices of reflex 9...................| 8  4 -4
+|Indices of reflex 10..................| 8  4  4
+|Indices of reflex 11..................| 8  8  0
+                                       |;
+|Number of points in Theta1, Theta2....|   21,    21
+|Start Theta1,Theta2 (Units-2).........|   0.,  -500.
+|End   Theta1,Theta2 (Units-2).........| 1000.,  500.
+                                       |;
+|Plot Theta2: [0-2]....................|1
+|               [0]-along Sg0          |;
+|               [1]-ort to surf.normal |;
+|               [2]-ort to k1          |;
+                                       |;
+|Warning level [0-3]...................|2
+|               [0]-off                |;
+|               [1]-gam<0 & test roots |;
+|               [2]-print test results |;
+|               [3]-correct test result|;
+                                       |;

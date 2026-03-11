@@ -1,0 +1,108 @@
+|This file is for GID_sl version.......|GID_SLm7
+|Batch mode flag (1:Yes/0:No/2:Quiet)..|0
+|Name for output files(.DAT,.TBL)[1-8].|test2
+|Name of top layer profile(.PRF)[1-8]..|
+                                       |;
+|Comment line-1........................|
+|Comment line-2........................|
+|Comment line-3........................|
+                                       |;
+|Code of Substrate.....................|Silicon
+|Database option: [-1:8]...............|
+|               [-1]=Automatic.........|;
+|                [0]=X0h...............|;
+|                [1]=Henke.............|;
+|                [2]=Henke+............|;
+|                [3]=Cowan.............|;
+|                [4]=Cowan+............|;
+|                [5]=Windt.............|;
+|                [6]=Windt+............|;
+|                [7]=Chantler..........|;
+|                [8]=Chantler+.........|;
+|Substrate Debye factors: DWF_0,DWF_h..|
+|Substrate da/a .......................|
+|Substrate interface roughness (A).....|
+                                       |;
+|X-ray data:1=wave,2=energy,3=line,4=QB|1
+|X-ray wavelength (A) or energy (keV)..|1.54
+|Name of X-ray line....................|
+|Polarization: 1=sigma, 2=pi, 3=mixed..|
+                                       |;
+Indices of Bragg reflection............|1 1 1
+                                       |;
+Units for: miscut,asymmetry,scan angles|0, 0, 3
+(0=degr/1=min/2=mrad/3=sec/4=urad/5=eV)|;
+                                       |;
+|Geometry specification:...............|6
+|  [1]=non-coplanar via angle of k0    |;
+|  [2]=non-coplanar via angle of kh    |;
+|  [3]=coplanar grazing incidence      |;
+|  [4]=coplanar grazing exit           |;
+|  [5]=symmetric Bragg case (any)      |;
+|  [6]=coplanar via Bragg planes angle |;
+|  [7]=coplanar via incidence angle    |;
+|  [8]=coplanar via exit angle         |;
+|  [9]=coplanar via beta=g0/|gh|       |;
+|                                      |;
+|   For geometries [1-5] only:         |;
+|Indices of external surface normal....|
+|Indices of miscut direction...........|
+|Miscut angle (Unit1)..................|
+|                                      |;
+|   For geometries [1-2,6-9] only:     |;
+|Asymmetry parameter (Unit2/none)......|7.
+|  [1]: incident angle at Bragg pos.   |;
+|  [2]: exit angle at Bragg pos.       |;
+|  [6]: Bragg planes angle to surface  |;
+|       (positive if beta=g0/|gh|>1)   |;
+|  [7]: incident angle at Bragg pos.   |;
+|  [8]: exit angle at Bragg pos.       |;
+|  [9]: asymmetry factor beta=g0/gh    |;
+                                       |;
+|Scan axis for non-coplanar cases......|3
+|   (use for [1,2] & non-coplanar [5]; |;
+|    in other cases [k0*h] is taken)   |;
+|   -- Values: --                      |;
+| [1]: Round N_surface.................|;
+| [2]: Round [k0*N_surface]............|;
+| [3]: Round h.........................|;
+| [4]: Round [k0*h]....................|;
+| [5]: Round other axis................|;
+| [6]: Takeoff spectrum (PSD with GID).|;
+| [7]: Energy (eV).....................|;
+| [8]: Energy (eV), fast: no x0h recalc|;
+|Scan vector indices, if other axis....|
+|                                      |;
+|   For all geometries:                |;
+|Invert axis? (Y:1/N:0)................|
+                                       |;
+|Scan angular/energy limits (Unit3)....|-50., 50.
+|Count of scan points..................|201
+                                       |;
+|Output file columns [A,I,E,2,S,D].....|A
+|    [A]=scan Angle....................|;
+|    [I]=Incidence angle...............|;
+|    [E]=Exit angle....................|;
+|    [2]=2*Theta (I+E).................|;
+|    [S]=Specular wave.................|;
+|   ([D]=diffracted intensity is auto..|;
+|        placed into the 2nd column)...|;
+                                       |;
+|Max |alpha/xh| to treat crystal layer |1000.
+|              as a crystalline object |;
+                                       |;
+|Matrix reduction: 0=no,1=prescan,2=fly|0
+                                       |;
+|Standing waves (1=yes,0=no)...........| 1
+|Reference interface # (0=surface).....| 0
+|Offsets down from this interface (A)..| 0., 10.
+|...........................(from,to)..|;
+|Number of depth points................|41
+|(Phase of location)/pi [0.--2.].......| 0.
+|      0.=at the Bragg planes          |;
+|      1.=between the Bragg planes     |;
+                                       |;
+|  Monochromator convolution options:  |;
+|MONO: curve convolution (1:Yes/0:No)..| 0
+|MONO: asymmetry beta=g0/|gh| [.01-100]| 1.
+|MONO: # of reflections [1--5].........| 1

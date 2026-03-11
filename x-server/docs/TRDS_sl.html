@@ -1,0 +1,585 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of grazing-incidence x-ray scattering from interface
+    roughness in multilayers.">
+   <meta name="keywords" content="X-ray reflection, X-ray scattering,
+    X-ray material science, X-ray analysis, multilayers, roughness">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray scattering from roughness on the Web</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+</script>
+</head>
+<body>
+<img src="images/trds_sl.gif" border="1" style="display:block; margin:auto; max-width:min(372px,90%); height:auto;" alt="TRDS_sl: X-ray diffuse scattering from multilayers with rough interfaces">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border bgcolor="#c1c1c1"><tr>
+<th><a href="TRDS_sl.html#Intro">Intro</a></th>
+<th><a href="TRDS_sl.html#Guide">TRDS Guide</a></th>
+<th><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);">Conditions of use</a></th>
+<th><a href="TRDS_sl.html#TRDS_sl">TRDS Access</a></th>
+<th><a href="TRDS_sl.html#Retrieve">Retrieve results</a></th>
+<th><a href="automation.html">Automate & fit</a></th>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+
+
+<table border="0" cellspacing="10" style="float:right;">
+<tr><th><a name="fig1"> </a><img src="images/rougsurf.gif" alt="Fig.1" border="1"></th></tr>
+<tr><th>&nbsp;</th></tr>
+<tr><th><a name="fig2"> </a><img src="images/rougmult.gif" alt="Fig.2" border="1"></th></tr>
+<tr><th>&nbsp;</th></tr>
+<tr><th><a name="fig3"> </a><img src="images/rougasym.gif" alt="Fig.3" border="1"></th></tr>
+</table>
+
+<p>This page is a CGI interface to my program <b>TRDS_sl</b> simulating
+non-specular x-ray scattering from multilayers with interface roughness. The
+basic ideas of this field are formulated in the famous work by Sinha <i>et al
+</i> <a href="#refs">[1]</a>. The angular pattern of non-specular scattering
+is related with the Fourier transform of roughness spectrum (Fig.1).
+Therefore, the measurements can bring the correlation function of statistical
+roughness distribution. In recent years this technique has found widespread
+applications in the studies of roughness inheritance and interface-interface
+correlations in multilayers <a href="#refs">[2-12]</a> (Fig.2). These
+measurements are especially valuable for semiconductor multilayers where the
+roughness anysotropy, the skew roughness correlations between interfaces, and
+the distributions of atomic steps on vicinal interfaces can be investigated
+<a href="#refs">[13-18]</a> (Fig.3).</p>
+
+<p><b>TRDS_sl</b> implements a number of different models or roughness in multilayers
+suggested by different authors. These include wavelength-dependent and
+asymmetric roughness correlations between different interfaces and roughness
+due to atomic steps on vicinal interfaces. The diffuse scattering is calculated
+in the distorted-wave Born approximation (DWBA) with the wavefields of non-rough
+reflector provided by <a href="TER_sl.html"><b>TER_sl</b></a>. The calculations
+are for coplanar scheme of measurements (Fig.1) most often used in the experiments.
+(the scattered radiation is integrated over the deviations from the reflection
+planes). The differential schemes <a href="#refs">[9,10]</a> with out-of-plane
+resolution are not supported by this version of the program.</p>
+
+<a name="refs"><b><i><u>References</u></i></b></a>
+
+<ol>
+<li> S.K.Sinha, E.B.Sirota, S.Garoff, and H.B.Stanley,
+<i>&quot;X-ray and neutron scattering from rough surfaces&quot;</i>,
+Phys. Rev. B, <b>38</b> (1988) 2297-2311.</li>
+
+<li> A.V.Andreev, A.G.Michette, and A.Renwick,
+<i>&quot;Reflectivity and roughness of X-ray multilayer mirrors. Specular
+reflection and angular spectrum of scattered radiation&quot;</i>,
+J. Modern Optics, <b>35</b> (1988) 1667-1687.</li>
+
+<li> V.Holy, J.Kubena and I.Ohlidal, K.Lischka, and W.Plotz,
+<i>&quot;X-ray reflection from rough layered systems&quot;</i>,
+Phys. Rev. B, <b>47</b> (1993) 15896.</li>
+
+<li> Z.H.Ming, A.Krol, Y.L.Soo, Y.H.Kao, J.S.Park, and K.L.Wang,
+<i>&quot;Microscopic structure of interfaces in Si<sub>1-x</sub> Ge<sub>x</sub> /Si
+heterostructures and superlattices studied by x-ray scattering and fluorescence
+yield&quot;</i>,
+Phys. Rev. B, <b>47</b> (1993) 16373-16381.</li>
+
+<li> Y.H.Phang, D.E.Savage, R.Kariotis, and M.G.Lagally,
+<i>&quot;X-ray diffraction measurement of partially correlated
+interfacial roughness in multilayers&quot;</i>,
+J.Appl.Phys., <b>74</b> (1993) 3181-3188.</li>
+
+<li> E.Spiller, D.Stearns, and M.Krumrey,
+<i>&quot;Multilayer x-ray mirrors: Interfacial roughness, scattering, and
+image quality&quot;</i>,
+J. Appl. Phys., <b>74</b> (1993) 107-118.</li>
+
+<li> S.K.Sinha,
+<i>&quot;X-ray diffuse scattering as a probe for thin film and interface
+structure&quot;</i>,
+J. Phys. III France, <b>4</b> (1994) 1543-1557.</li>
+
+<li> V.Holy and T.Baumbach,
+<i>&quot;Nonspecular x-ray reflection from rough multilayers&quot;</i>,
+Phys. Rev. B, <b>49</b> (1994) 10669.</li>
+
+<li> T.Salditt, T.H.Metzger and J.Peisl,
+<i>&quot;Kinetic roughness of amorphous multilayers studied by diffuse x-ray
+scattering&quot;</i>,
+Phys. Rev. Lett., <b>73</b> (1994) 2228-2231.</li>
+
+<li> R.Paniago, H.Homma, P.C.Chow, S.C.Moss, Z.Barnea, S.S.P.Parkin, and D.Cookson,
+<i>&quot;X-ray diffuse-scattering study of interfacial morphology and conformal
+roughness in metallic multilayers&quot;</i>,
+Phys. Rev. B, <b>52</b> (1995) 17052-17055.</li>
+
+<li> V.M.Kaganer, S.A.Stepanov and R.Koehler,
+<a href="pub/Stepanov_PRB_1995_12.pdf"><i>&quot;Bragg-diffraction
+peaks in x-ray diffuse scattering from multilayers with rough interfaces&quot;</i></a>,
+Phys. Rev. B, <b>52</b> (1995) 16369-16372.</li>
+
+<li> B.Jenichen, S.A.Stepanov, B.Brar and H.Kroemer,
+<a href="pub/Stepanov_JAP_1996_01.pdf"><i>&quot;Interface
+roughness of InAs/AlSb superlattices investigated by x-ray scattering&quot;</i></a>,
+J. Appl. Phys., <b>79</b>, (1996) 120-124.</li>
+
+<li> T.A.Rabedeau, I.M.Tidswell, P.S.Pershan, J.Bevk and B.S.Freer,
+<i>&quot;X-ray reflectivity studies of SiO<sub>2</sub> /Si (001)&quot;</i>,
+Appl. Phys. Lett., <b>59</b> (1991) 3422-3424.</li>
+
+<li> R.L.Headrick and J.-M.Baribeau,
+<i>&quot;Correlated roughness in (Ge<sub>m</sub> /Si<sub>n</sub> )<sub>p</sub>
+superlattices on Si(100)&quot;</i>,
+Phys. Rev. B, <b>48</b> (1993) 9174-9177.</li>
+
+<li> S.K.Sinha, M.K.Sanyal, S.K.Satija, C.F.Majkrzak, D.A.Neumann, H.Homma,
+S.Szpala, A.Gibaud, and H.Morkoc,
+<i>&quot;X-ray scattering on surface roughness of GaAs/AlAs multilayers&quot;</i>,
+Physica B, <b>198</b> (1994) 72-77.</li>
+
+<li> Y.H.Phang, C.Teichert, M.G.Lagally, L.J.Peticolos, J.C.Bean and E.Kasper,
+<i>&quot;Correlated-interfacial-roughness anisotropy in
+Si<sub>1-x</sub> Ge<sub>x</sub> /Si superlattices&quot;</i>,
+Phys. Rev. B, <b>50</b> (1994) 14435-14445.</li>
+
+<li> V.Holy, C.Giannini, L.Tapfer, T.Marschner, and W.Stolz,
+<i>&quot;Diffuse x-ray reflection from multilayers with stepped interfaces&quot;</i>,
+Phys. Rev. B, <b>55</b> (1997) 9960-9968.</li>
+
+<li> E.A.Kondrashkina, S.A.Stepanov, R.Opitz, M.Schmidbauer, R.Koehler, R.Hey,
+M.Wassermeier, and D.V.Novikov,
+<a href="pub/Stepanov_PRB_1997_10.pdf"><i>&quot;Grazing-incidence
+x-ray scattering from stepped interfaces in AlAs/GaAs superlattices&quot;</i></a>,
+Phys. Rev. B, <b>56</b> (1997) 10469-10482.</li>
+
+<li> P.R.Pukite, C.S.Lent, and P.I.Cohen,
+<i>&quot;Diffraction from stepped surfaces. II. Arbitrary terrace
+distributions&quot;</i>,
+Surface Science, <b>161</b> (1985) 39-68.</li>
+
+</ol>
+
+<hr><br>
+<h2><a name="Guide"><u>Program Guide</u></a></h2>
+
+<p>This short guide provides some explanations on the <b>TRDS_sl</b>
+data input and outlines the restrictions of this Web interface.</p>
+
+<p>The <b>TRDS_sl</b> program is executed on my PC, which runs a Web server
+under Windows operating system. Since this PC is shared by all of the WEB users
+of my x-ray library, please, <span style="color:red;"><b>avoid overloading the server
+by running multiple tasks at the same time</b></span>.</p>
+
+<p>To obtain the results from <b>TRDS_sl</b> you need to fill out the input form
+and click on the SUBMIT button. If your input is correct, the results will be
+presented as a figure (a curve or a contour plot) and a reference to ZIPped
+data file for downloading. Otherwise, an error report will be returned.</p>
+
+<p>The specification of x-rays and crystal substrate should not cause any problems.
+The program can use the <a href="x0h.html"><b><i>X0h</i></b></a> database for
+automatic calculation of the scattering and absorption factors in the media.</p>
+
+<p>The rms roughness height is specified individually for each layer in the
+surface profile (see below). The vertical and horizontal correlation lengths
+of roughness are specified as common for the whole structure. The following
+models of roughness can be used:</p>
+
+<ol>
+<li> <b>Uncorrelated roughness</b>. The roughness of different interfaces is
+not correlated (Fig.2a) and each interface is assumed to possess fractal
+(self-affine) roughness with the correlation function by Sinha <i>et al</i> <a
+href="#refs">[1]</a>.<br>
+The parameters used for this model are the lateral correlation length
+L<sub>h</sub> and the fractal dimension parameter j (&quot;jaggedness&quot;):
+0.1&lt;j&lt;1 (smaller j cause bad behavior of the cross-section integral and
+the restriction of minimum j by 0.1 is used in <b>TRDS_sl</b> as a reasonable
+compromise).</li>
+
+<li> <b>Completely correlated roughness</b>. Same as model-1, but the roughness
+of different  interfaces assumed to be completely correlated (conformal) -- see
+Fig.2b.</li>
+
+<li> <b>Ming's model</b> -- the model suggested by Ming <i>et al</i> <a
+href="#refs">[4]</a>. This describes an intermediate case between model-1 and
+model-2. The correlation between roughness of different interfaces decreases
+when the distance between them increases. The model assumes that vertical
+correlation does not depend on the lateral size of roughness. The parameters
+used for this model are L<sub>h</sub>, j, and the vertical correlation length
+L<sub>v</sub>.</li>
+
+<li> <b>Lagally's model</b> -- a simple model to account for stronger vertical
+correlations of roughness with larger lateral size <a href="#refs">[5]</a>.
+Here the fractal correlation function by Sinha is used. The correlations of
+roughness at each interface are calculated with L<sub>h</sub> and the
+interface-interface correlations are calculated with a greater lateral
+correlation length L<sub>h2</sub>. The model also reads L<sub>v</sub> and the
+fractal parameter j.</li>
+
+<li> <b>Holy's model</b> -- the model suggested by Holy and Baumbach <a
+href="#refs">[8]</a>. This is a complete correlation model, but of different
+kind, as compared with model-2. It takes into account that interfaces are
+formed successively from the substrate to the surface. Each interface adds
+some statistically independent roughness which is assumed in this model to be
+completely transferred to all the successive interfaces. Thus, the roughness
+is accumulated. The correlation between two interfaces is determined by the
+contributions of all the interfaces below the lower one because the roughness
+added between the lower and higher interfaces is independent on the roughness
+of the lower interface. <b>NOTE:</b> the rms roughness specified for this
+model is the <i>incremental</i> roughness. The total roughness at each
+interface is calculated by <b>TRDS_sl</b> and it is returned in the listing
+file (the file with the TBL extension). The total rms roughness always grows
+towards the surface. The parameters used for this model are the lateral
+correlation length L<sub>h</sub> and the fractal dimension parameter j
+(&quot;jaggedness&quot;).</li>
+
+<li> <b>Spiller's model</b> -- the model suggested by Spiller, Stearns and
+Krumrey <a href="#refs">[6]</a> and the respective correlation function for
+the diffuse scattering simulations is derived in <a href="#refs">[11]</a>.
+This model assumes the accumulation of roughness like in Holy's model, but
+the roughness added at each interface is not completely inherited by
+successive interfaces. The inheritance is the lower the shorter is the
+lateral size of roughness (Fig.2c). As a result, the lateral size of total
+roughness grows towards the surface even if all the interfaces add roughness
+with the same size. <b>NOTE:</b> the rms roughness specified for this model
+is the <i>incremental</i> roughness. The total roughness at each interface is
+calculated by <b>TRDS_sl</b> and it is returned in the TBL file. The total
+rms height may increase or decrease towards the surface depending on whether
+the accumulation or &quot;dissociation&quot; of roughness is dominating. This
+model requires L<sub>h</sub> and L<sub>v</sub>. It only works with j=1.</li>
+
+<li> <b>Pukite's model</b> -- the model developed in <a href="#refs">[19]</a>
+for the scattering from regular atomic steps on vicinal surfaces (see Fig.3).
+<b>TRDS_sl</b> combines this model with interface-interface correlations in
+the form of Ming <i>et al</i> (see <a href="#refs">[18]</a> for details). The
+calculations use Born approximation instead of DWBA (the Yoneda peaks are not
+reproduced). All the steps (or step bunches) are assumed to have the same
+height. The input parameters for the model are L<sub>h</sub>, L<sub>v</sub>
+and the surface miscut angle Theta<sub>m</sub>.  <b>NOTE:</b> any rms heights
+in the surface profile are ignored by this model because the rms height of
+steps is: sigma=L<sub>h</sub>*Theta<sub>m</sub>. However, you can select the
+option to add scattering from self-affine roughness to the scattering from
+steps.</li>
+
+<li> <b>Smoothed Pukite's model</b> -- a modification of Pukite's model allowing
+a spread of steps (or step bunches) over their height <a href="#refs">[18]</a>.
+The mean steps height is assumed to be sigma=L<sub>h</sub>*Theta<sub>m</sub>
+and the spread is the sigma of self-affine roughness (specified for each layer).
+Since this is rather phenomenological model, the intensity of scattering from
+steps is calculated with additional parameter is <i>effective</i> steps height.
+This provides the weight of steps contribution when the scattering from steps
+is mixed with the scattering from self-affine roughness.</li>
+
+<li> <b>Pershan's model</b> -- one more modification of Pukite's model suggested
+in <a href="#refs">[13]</a>. While the previous two models assume a geometric
+distribution of terraces over their length with the cutoff parameter L<sub>h</sub>,
+this model assumes regular steps with the mean terrace width L<sub>h</sub> and
+the terrace width spread L<sub>h</sub><sup>spread</sup>. Use this model if you
+see a periodic peaks over q<sub>x</sub> on your diffuse scattering pattern.</li>
+
+</ol>
+
+<p>The specification of surface layer profile is implemented with a simple
+script language. A typical example is: </p>
+<pre>
+;
+!
+period=5
+t=10 code=GaAs w0=0.8 sigma=2
+t=10 code=GaAs x=0.3 code2=AlAs x2=0.7 sigma=2
+t=10 code=SiGe rho=0.9 sigma=2
+t=10 x0=(5e-4,7e-6) sigma=2
+t=10 w0=.5 sigma=2
+t=10 w0=0.5
+t=10
+end period
+</pre>
+
+<p>Here:</p>
+<ul>
+<li type="square"> &quot;;&quot; and &quot;!&quot; are the comment signs. The
+lines starting with these symbols are ignored and if these symbols are
+present at the middle of a line, everything to the right of them is ignored
+too.</li>
+
+<li type="square"> &quot;period=&quot; and &quot;end period&quot; mark the
+beginning and the end of a periodic group of layers. The maximum of two
+enclosed periods is allowed.</li>
+
+<li type="square"> &quot;t=10&quot; is the layer thickness in Angstroms.
+<b>NOTE:</b> this is the only parameter of layer which cannot be skipped.</li>
+
+<li type="square"> &quot;code=&quot; is a code of material in the <b>X0h</b>
+database. Use this code for automatic calculation of layers x0 (chi<sub>
+0</sub>). For the reference of available codes see the menu for the substrate
+or in the box at the right side of the profile input field. Please, be
+advised that the codes are case sensitive (while the script keywords are
+not).<br>
+Alternatively you can specify a valid chemical formula for the code and
+the material density (&quot;rho=&quot;) in g/cm^3.<br>
+If no code is specified, the substrate code is used by default.</li>
+
+<li type="square"> &quot;x=&quot;,&nbsp;&nbsp;  &quot;code2=&quot;,&nbsp;&nbsp;  &quot;x2=&quot;,&nbsp;&nbsp;
+&quot;code3=&quot;&nbsp;&nbsp;  are the parameters to specify composite materials and
+solid solutions. For example, a structure like Ga<sub>0.3</sub>Al<sub>0.7</sub>As
+can be specified as: &quot;code=GaAs x=0.3 code2=AlAs&quot;, or even shrter:
+&quot;x=0.3 code2=AlAs&quot;. You can also specify &quot;x2=0.7&quot;, but
+this is redundant, because the program automatically takes care of the sum of
+all &quot;xN&quot; being equal to one (e.g. the input like &quot;x2=0.8&quot;
+in the above example would cause the error message). Maximum of 4 codes are
+allowed and all of them must be valid ones in the <b>X0h</b> database.</li>
+
+<li type="square"> &quot;x0=&quot;  is the layer x-ray susceptibility
+chi<sub>0</sub>. This parameter, when specified, replaces the data given by
+the <b>X0h</b> database.<br>
+<b>NOTE:</b> x0 comes from the dynamical diffraction
+theory. It is related with the parameters <b>delta</b> and <b>eta</b> often
+used for reflectivity as: x0=2*(delta+i*eta).</li>
+
+<li type="square"> &quot;w0=&quot; is a Debye-Waller-like factor for x0. It may
+be used to correct the x0 value provided by the X0H database:
+<pre>
+ x0=w0*x0
+</pre>
+By default, this factor is equal to one. Unlike usual Debye-Waller
+factor, w0 can be greater than one, because it is simply one more
+way to specify x0.</li>
+
+<li type="square"> &quot;sigma=&quot; is the rms roughness at the upper layer
+interface expressed in Angstroms. The value or this parameter should not
+exceed the layer thickness. Also be advised that using of DWBA presumes small
+roughness q<sub>z</sub>*sigma &lt;&lt;1 which usually implies the limit of
+sigma &lt; 5-10A. <b>NOTE:</b> for Holy's and Spiller's models the rms of
+incremental roughness is used instead of the total rms.</li>
+
+</ul>
+
+<p>Here is a practical example -- a profile for 20-period AlAs/GaAs superlattice
+with 100 Angstroms of GaAs and 70 Angstroms of AlAs in each period; the structure
+is covered by additional 200A of GaAs and, finally, there is some 20A amorphous
+oxide layer on the surface:</p>
+
+<pre>
+; comments are allowed in any line, but should
+; not contain special symbols like '"*?$!@%
+;
+; Oxide layer:
+t=20. w0=0.7 sigma=5
+; -- w0=0.7 because of reduced layer density
+
+; Cap layer:
+t=200. sigma=3.
+; -- when the code is not specified,
+; the substrate code (GaAs) is used
+
+; Superlattice:
+period=20
+  t=100. sigma=3.
+  t=70. code=AlAs sigma=4.
+end period
+</pre>
+
+
+<p>The angle of skew roughness transfer is the parameter shown of Fig.3. This
+parameter is not incorporated in the correlation function corresponding to
+Spiller's model.</p>
+
+<p>There are two &quot;accelerators&quot; -- the parameters which can increase
+the speed of calculation. These work for self-affine roughness models only.
+The selection of K(x) instead of exp(K(x))-1 is good for small rms roughness.
+For large rms this accelerator can provide underestimated intensity of
+diffuse scattering, but the shape of patterns is well preserved. Thus, this
+approximation can be used if one is interested in the shape only. In the
+&quot;semi-Born&quot; approximation the diffuse scattering is calculated for
+transmitted x-ray waves only. This provides the 16-times acceleration, but
+the shape of Yoneda peaks is incorrect. So, it can be used for large lateral
+correlation lengths where the scattering is concentrated near the specular peak
+and remains under experimental background near the Yoneda peaks.</p>
+
+<p>For the rest of parameters you are suggested to follow the common sense. To
+ensure that your input was correct, please verify respective listing file --
+a file with &quot;<b>.TBL</b>&quot; extension in the ZIPped archive
+referred from the <b>TRDS_sl</b> results screen. </p>
+
+<hr><br>
+<h2><a name="TRDS_sl"><u>Access to <b>TRDS_sl</b></u></a></h2>
+
+<p>To simplify understanding the <b>TRDS_sl</b> interface you are provided the
+templates listed below. All the templates link to the same program and
+provide the same functionality. They differ by preloaded data to demonstrate
+some possible applications of <b>TRDS_sl</b>.<br>
+Besides, when submitting the <b>TRDS_sl</b> task, it is possible to check the
+progress watching option. The progress watching is obviously more comfortable,
+but it might not work with some old Web browsers. Also, it is a bit slower
+because of putting an additional load on the network and launching each 5
+seconds a watch program on my computer. Welcome to try both of the ways and
+choose the most convenient for your needs. However, please note that in the
+case of multilayers the TRDS calculations may become very lengthy. Then the
+progress watching option is the only way of maintaining connection to the Web
+server and thus seeing the results of submitted task.</p>
+
+<!-- -----------------------------POST----------------------------------- -->
+<div style="text-align:center;">
+<img src="images/pi_pin.gif" alt=" "> <b><span style="color:red;">New of December-2012:</span>
+<a href="News.html#POST">POST-Method Templates</a></b>
+</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border     bgcolor="silver"><tr><td>
+<dl>
+
+<dt><b> 1. <a href="/cgi/www_form.pl?template=TRDS_sl_omega.htm&method=post">Sample
+rotations at a fixed detector position</a></b></dt>
+<dd>These scans are also known as omega- or transverse scans.<br>&nbsp;</dd>
+
+<dt><b> 2. <a href="/cgi/www_form.pl?template=TRDS_sl_long.htm&method=post">Theta-2Theta
+scans of sample and detector with an offset from the specular rod</a></b></dt>
+<dd>Those are also known as longitudinal scans.<br>&nbsp;</dd>
+
+<dt><b> 3. <a href="/cgi/www_form.pl?template=TRDS_sl_PSD.htm&method=post">Detector
+scans at a fixed sample position</a></b></dt>
+<dd>-- also referred as 2*Theta- or PSD-scans.<br>&nbsp;</dd>
+
+<dt><b> 4. <a href="/cgi/www_form.pl?template=TRDS_sl_qx.htm&method=post">qx-sections
+of reciprocal space</a></b></dt>
+<dd>Those sections are close, but not equivalent to transverse scans.
+<br>&nbsp;</dd>
+
+<dt><b> 5. <a href="/cgi/www_form.pl?template=TRDS_sl_qz.htm&method=post">qz-sections
+of reciprocal space</a></b></dt>
+<dd>-- similar but not equivalent to longitudinal scans.<br>&nbsp;</dd>
+
+<dt><b> 6. <a href="/cgi/www_form.pl?template=TRDS_sl_map.htm&method=post">(qx,qz)-maps
+of reciprocal space</a></b></dt>
+<dd>No online 3D-graphs are available. The data files are provided as ASCII
+grids compatible with <a href="https://www.goldensoftware.com/products/surfer">Surfer</a> by Golden
+Software, but they can be easily converted to other grid formats.</dd>
+
+</dl>
+</td></tr></table>
+</td></tr></table>
+<!-- ------------------------END-OF-POST--------------------------------- -->
+
+<p>&nbsp;</p>
+
+<!-- -----------------------------GET------------------------------------ -->
+<div style="text-align:center; max-width:min(900px,90%); margin:auto;">
+<b>GET-Method Templates</b><br>
+This is an older, but better tested method. Generally it works very well except
+<a href="News.html#POST">known problems with IE browser &amp; some firewalls</a>
+for structure description exceeding 2K bytes.
+</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border bgcolor="silver"><tr><td>
+<dl>
+
+<dt><b> 1. <a href="/cgi/www_form.pl?template=TRDS_sl_omega.htm">Sample
+rotations at a fixed detector position</a></b></dt>
+<dd>These scans are also known as omega- or transverse scans.<br>&nbsp;</dd>
+
+<dt><b> 2. <a href="/cgi/www_form.pl?template=TRDS_sl_long.htm">Theta-2Theta
+scans of sample and detector with an offset from the specular rod</a></b></dt>
+<dd>Those are also known as longitudinal scans.<br>&nbsp;</dd>
+
+<dt><b> 3. <a href="/cgi/www_form.pl?template=TRDS_sl_PSD.htm">Detector scans
+at a fixed sample position</a></b></dt>
+<dd>-- also referred as 2*Theta- or PSD-scans.<br>&nbsp;</dd>
+
+<dt><b> 4. <a href="/cgi/www_form.pl?template=TRDS_sl_qx.htm">qx-sections of
+reciprocal space</a></b></dt>
+<dd>Those sections are close, but not equivalent to transverse scans.
+<br>&nbsp;</dd>
+
+<dt><b> 5. <a href="/cgi/www_form.pl?template=TRDS_sl_qz.htm">qz-sections of
+reciprocal space</a></b></dt>
+<dd>-- similar but not equivalent to longitudinal scans.<br>&nbsp;</dd>
+
+<dt><b> 6. <a href="/cgi/www_form.pl?template=TRDS_sl_map.htm">(qx,qz)-maps
+of reciprocal space</a></b></dt>
+<dd>No online 3D-graphs are available. The data files are provided as ASCII
+grids compatible with <a href="https://www.goldensoftware.com/products/surfer">Surfer</a> by Golden
+Software, but they can be easily converted to other grid formats.</dd>
+
+</dl>
+</td></tr></table>
+</td></tr></table>
+<!-- ------------------------END-OF-GET---------------------------------- -->
+
+<br><hr><br>
+
+<h2><a name="Retrieve"><u>Retrieve results</u></a></h2>
+
+<p>Here is a tool to retrieve the results of finished jobs if you know the job ID.
+Some possible uses of this tool are:</p>
+<ol>
+
+<li> You started a job with the progress watch option; the server returned
+the job ID and began reporting the progress. However, you found that the
+calculations would take too long. Then, you may break the connection and retrieve
+the data later on with this tool. If the calculations are not finished, the
+tool will resume the watch process.</li>
+
+<li> The data are accidentally deleted from your client computer and you
+want another copy of them. In this case you should be aware that results are
+usually stored on the server for about one day after respective job is finished.</li>
+
+
+</ol>
+
+<form action="/cgi/wwwwatch.pl" method="get">
+<script language="javascript" type="text/javascript">
+  document.write('<input type="hidden" name="epoch" value='+Date.now()+'>'+"\n");
+</script>
+<b>Job ID: </b>
+<input type="text" name="jobname" size="12" value="TDSxxxxx">
+<input type="submit" value="Retrieve!">
+</form>
+
+<br><hr><br>
+
+<table>
+<tr valign="top">
+    <td><img src="images/x.gif" alt="X" border="0"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"      onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"         onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+<p>
+
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+
+</body>
+</html>

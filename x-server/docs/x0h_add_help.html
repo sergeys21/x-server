@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This site provides WEB interfaces to software
+    calculating x-ray scattering factors, x-ray dynamical diffraction and
+    specular reflection from multilayers and x-ray scattering from interface
+    roughness at grazing angles.">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray reflection, X-ray scattering, crystal data, scattering factors,
+    X-ray crystallography, X-ray material science, X-ray analysis,
+    strained crystals, multilayers, roughness">
+    <title>X0hdb Submission Help</title>
+</head>
+<body onLoad="window.focus()">
+
+<form action=""><p style="text-align: center">
+<input type="button" value="Space Group" onClick='window.location.href="#Group";'   style="background:#d6dcfc;margin:5px;">
+<input type="button" value="Density"     onClick='window.location.href="#Density";' style="background:#d6dcfc;margin:5px;">
+<input type="button" value="Z"           onClick='window.location.href="#Z";'       style="background:#d6dcfc;margin:5px;">
+</p></form>
+
+
+<h3 style="text-align:center"><b>X0hdb Submission Help</b></h3>
+
+<p>Parameters <b><span style="color:red"><a href="#Group">Space Group</a></span></b>
+(structure symmetry group), <b><span style="color:red"><a href="#Density">Density</a></span></b>
+(material density in g/cm<sup>3</sup>) and <b><span style="color:red"><a href="#Z">Z</a></span></b>
+(formula units per cell) are used for verifying structure consistency.</p>
+
+<p>First of all, the selected <b><span style="color:red"><a name="Group">Space Group</a></span></b>
+transformations are applied to the supplied coordinates of atoms. If
+you believe that you provided all coordinates of atoms in the unit
+cell, the transformations should not add any new positions. You can
+also provide only initial positions and then the space group
+transformations will give you all positions. Let us take GaAs crystal
+as and example. It contains four Ga atoms and four As atoms in the unit
+cell. The space group of GaAs is <b>216 F-43m</b>. If you specify all
+coordinates:
+<pre>
+Ga
+ 0.00,   0.00,   0.00
+ 0.00,   0.50,   0.50
+ 0.50,   0.00,   0.50
+ 0.50,   0.50,   0.00
+As
+ 0.25,   0.25,   0.25
+ 0.25,   0.75,   0.75
+ 0.75,   0.25,   0.75
+ 0.75,   0.75,   0.25
+</pre>
+<p>then the space group transformation will add nothing. However, if you
+specify only a partial set, then the <b>216 F-43m</b> space group
+transformations will produce the above four sites per atom. If after
+processing the program returns more (or less) coordinates than you
+expect, then either the initial coordinates or the space group are
+incorrect. Many space groups contain multiple settings. Make sure that
+you pick correct settings matching the coordinates you provide.</p>
+
+<p>Parameter <b><span style="color:red"><a name="Density">Density</a></span></b>
+is used for the second structure check. Once all coordinates are found
+and the lattice parameters are supplied, the program can calculate the
+material density, which is checked against the supplied one for
+consistency. The check is considered passed in the difference is below
+10%.</p>
+
+<p>Parameter <b><span style="color:red"><a name="Z">Z</a></span></b> is used
+for the final check. Z is the number of chemical formula instances
+(units) contained in the unit cell. For example, for GaAs crystal, Z=4
+because the unit cell contains 4 Ga atoms and 4 As atoms; for Silicon
+crystal, Z=8 because the unit cell of Silicon crystal contains 8 Si
+atoms. After applying the space group transformations, the program
+caclulates the number of sites for each atom and then divides it by Z.
+If everything is corret, it should give the checmical formula (e.g.
+Ga1As1 or Si1), but if not, then the number of coordinates for some
+atom or atoms s is incorrect, which means either the initial positions
+before applying the space group transformations are incorrect or
+incorrect space group was selected. </p>
+
+<p>Please note that if occupations of atoms are not equal one (i.e. if
+atoms occupy their cells with the probability of less than 100%) the
+Z-check may be tricky and therefore one may skip it by not providing
+the expected Z value.</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+</body>
+</html>

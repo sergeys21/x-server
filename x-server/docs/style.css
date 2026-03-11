@@ -1,0 +1,53 @@
+/*  6pt  8px 0.50em  50%
+ *  7pt  9px 0.55em  55%
+ *  8pt 11px 0.70em  70%
+ *  9pt 12px 0.75em  75%
+ * 10pt 12px 0.80em  80%
+ * 11pt 15px 0.95em  95%
+ * 12pt 16px 1.00em 100%
+ * 13pt 17px 1.05em 105%
+ * 14pt 19px 1.20em 120%
+ * 15pt 21px 1.30em 130%
+ * 16pt 22px 1.40em 140%
+ * 17pt 23px 1.45em 145%
+ * 18pt 24px 1.50em 150%
+*/
+/* *		{margin: 0; padding: 0} */
+*		{font-size: max(15px,1.0vw); font-family: Arial, sans-serif}
+img.email	{max-height: max(15px,1.0vw); height:.9em; width:auto; vertical-align:middle;}				/* same as font size */
+body		{background-color: #FDFFE6; color: #000000;}
+body.progress	{background-color: silver;}
+body.whitebkg	{background-color: white;}
+body.menu	{background-color: #555555; color: #FDFFE6;}
+th		{font-weight: bold;}
+h3.menu		{color: #FF5555;}
+h1		{font-size: max(22px,1.4vw);}
+h2		{font-size: max(19px,1.3vw);}
+h3		{font-size: max(16px,1.2vw);}
+h4		{font-size: max(15px,1.1vw);}
+h5		{font-size: max(12px,1.0vw);}
+small		{font-size: max(9px,0.9vw);}
+body,p,ul,ol,td	{max-width: 900px;}
+/* p		{margin: 1em 0; padding-right:1em; padding-left:1em} */
+/* a				{color: #800000; text-decoration: none;}  -- this is too strong */
+a:link, a:visited, a:active	{color: #800000; text-decoration: none;}
+a:hover				{color: #800000; text-decoration: underline;}
+a.menu				{color: #FDFFE6;}
+
+form,input,select,textarea	{font-size: max(12px,1.0vw); font-family: monospace; font-weight: normal}
+
+
+/* For x0h_form */
+pre		{font-family: Consolas,monospace}
+
+/* For x0h_form and x0p_form */
+.notop {vertical-align:top; border-top-style:hidden; border-top:0;}
+.nobtm {vertical-align:top; border-bottom-style:hidden; border-bottom:0;}
+.novrb {vertical-align:top; border-top-style:hidden; border-top:0; border-bottom-style:hidden; border-bottom:0;}
+
+/* For x0p_form */
+.vtop td, th {vertical-align:top;padding-left:10px;padding-right:10px;}
+.hpad th, td {padding-left:10px;padding-right:10px;}
+
+/* replacement to <nobr>, use as <span class="nobr"> */
+.nobr {white-space:nowrap;}

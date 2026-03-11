@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This site provides WEB interfaces to software
+    calculating x-ray scattering factors, x-ray dynamical diffraction and
+    specular reflection from multilayers and x-ray scattering from interface
+    roughness at grazing angles.">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray reflection, X-ray scattering, crystal data, scattering factors,
+    X-ray crystallography, X-ray material science, X-ray analysis,
+    strained crystals, multilayers, roughness">
+    <title>Coplanar and Non-coplanar diffraction geometries</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function closeIt() {close();}
+// -->
+</script>
+</head>
+<body onLoad="window.focus()" class="whitebkg">
+
+<h2 style="text-align:center;">Specifications of Coplanar and Non-Coplanar Diffraction Geometries</h2>
+
+<p><b>GID_sl</b> provides multiple options to define the Bragg diffraction geometry
+as well as the possibility to simulate various scans around the Bragg peaks.</p>
+
+<p>The key point in proper using those options is understanding the difference
+between coplanar and non-coplanar diffraction geometries. We call the geometry
+<span style="color:red;">coplanar</span> where the incident wave vector
+<b>k<sub>0</sub></b>, the reciprocal lattice vector <b>h</b>, and the surface
+normal <b>N</b> lie in the same plane (see Fig.1). In other words, this is the
+case when the x-ray scattering plane determined by the vectors <b>k<sub>0</sub></b>
+and <b>h</b> is perpendicular to the surface. In the coplanar Bragg diffraction
+the scans are always around the vector [<b>k<sub>0</sub></b>x<b>h</b>] (see Fig.1)
+while the variety of other scan options provided by <b>GID_sl</b> is only relevant
+for more advance non-coplanar diffraction.</p>
+
+<img src="images/bragg_coplanar.gif" style="display:block; margin:auto; max-width:min(339px,90%); height:auto;" border="0" alt="Fig.1"><br>
+<div style="text-align:center;"><b>Fig.1</b></div>
+
+<p>By now the most of x-ray experiments are carried out in coplanar geometries
+since they are simpler to implement.</p>
+
+<hr>
+
+<p>The major advantage of <b>GID_sl</b> as compared to any other known to me x-ray
+diffraction simulation program is that <b>GID_sl</b> can handle arbitrary
+<span style="color:red;">non-coplanar</span> cases of diffraction including those
+with grazing incidence/exit and the x-ray specular reflection effects.</p>
+
+<p>The most frequently used example of non-coplanar Bragg diffraction is the
+grazing-incidence diffraction, GID (see Fig.2). Here the scattering plane
+(the plane defined by <b>k<sub>0</sub></b> and <b>h</b>) is no longer
+perpendicular to the surface and the actual inclination of this plane is
+determined by the choice of the incidence angle of x-rays. So, as we see, the
+non-coplanar geometries add additional degree of freedom in choosing the
+incidence and exit angles of x-rays, thus providing more flexibility in
+studying structural properties of crystals.</p>
+
+<p>In addition, the non-coplanar diffraction geometries offer a wide choice of
+scan options. For example, as shown on Fig.2, one may rock the crystal around
+the surface normal <b>N</b> in order to keep the incidence angle unchanged,
+or around the reciprocal vector <b>h</b> in order to vary the incidence angle
+while preserving the Bragg condition.</p>
+
+<img src="images/bragg_non-coplanar.gif" style="display:block; margin:auto; max-width:min(430px,90%); height:auto;" border="0" alt="Fig.2"><br>
+<div style="text-align:center;"><b>Fig.2</b></div>
+
+<p>The table below lists all the available ways to specify diffraction geometries
+to the <b>GID_sl</b> program:</p>
+
+<table border>
+<tr valign="top"><th> No  </th><th>Geometry specification by...                                           </th><th>Geometry<br>type                                        </th><th>Surface<br>specification                </th><th>Asymmetry<br>parameter                      </th><th>Scan<br>axis                                    </th></tr>
+<tr valign="top"><td> [1] </td><td>Surface orientation &amp; incidence angle of K0                        </td><td style="text-align:center;">non-coplanar<sup><small>(1)</small></sup> </td><td style="text-align:center;">     required           </td><td style="text-align:center;">incidence angle of K0        </td><td style="text-align:center;"> any                             </td></tr>
+<tr valign="top"><td> [2] </td><td>Surface orientation &amp; exit angle of Kh                             </td><td style="text-align:center;">non-coplanar<sup><small>(1)</small></sup> </td><td style="text-align:center;">     required           </td><td style="text-align:center;"> exit angle of Kh            </td><td style="text-align:center;"> any                             </td></tr>
+<tr valign="top"><td> [3] </td><td>Surface orientation &amp; condition of coplanar grazing incidence      </td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">     required           </td><td style="text-align:center;">      no                     </td><td style="text-align:center;"> [K0*h]                          </td></tr>
+<tr valign="top"><td> [4] </td><td>Surface orientation &amp; condition of coplanar grazing exit           </td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">     required           </td><td style="text-align:center;">      no                     </td><td style="text-align:center;"> [K0*h]                          </td></tr>
+<tr valign="top"><td> [5] </td><td>Surface orientation &amp; condition of symmetric Bragg case            </td><td style="text-align:center;"> non-coplanar<sup><small>(2)</small></sup></td><td style="text-align:center;">     required           </td><td style="text-align:center;">      no                     </td><td style="text-align:center;"> any<sup><small>(2)</small></sup></td></tr>
+<tr valign="top"><td> [6] </td><td>Condition of coplanar reflection &amp; angle of Bragg planes to surface</td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">       no               </td><td style="text-align:center;">Bragg planes angle to surface</td><td style="text-align:center;"> [K0*h]                          </td></tr>
+<tr valign="top"><td> [7] </td><td>Condition of coplanar reflection &amp; incidence angle of K0           </td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">       no               </td><td style="text-align:center;">incidence angle of K0        </td><td style="text-align:center;"> [K0*h]                          </td></tr>
+<tr valign="top"><td> [8] </td><td>Condition of coplanar reflection &amp; exit angle of Kh                </td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">       no               </td><td style="text-align:center;"> exit angle of Kh            </td><td style="text-align:center;"> [K0*h]                          </td></tr>
+<tr valign="top"><td> [9] </td><td>Condition of coplanar reflection &amp; asymmetry factor beta=g0/gh     </td><td style="text-align:center;"> coplanar                                 </td><td style="text-align:center;">       no               </td><td style="text-align:center;">asymmetry factor g0/gh       </td><td style="text-align:center;"> [K0*h]                          </td></tr>
+</table>
+
+<br>
+
+<table>
+<tr valign="top">
+<td>&nbsp;<sup><small>(1)</small></sup></td>
+<td>The geometry may become coplanar if the extreme incidence and exit
+angles are substituted. These extreme angles are calculated in the geometry
+specifications [3] and [4] respectively.</td>
+</tr>
+<tr valign="top">
+<td>&nbsp;<sup><small>(2)</small></sup></td>
+<td>The geometry becomes coplanar if the reciprocal vector
+of Bragg diffraction is perpendicular to the surface. The <b>GID_sl</b> detects the
+coplanar case automatically and then chooses [K0*h] as the scan axis.</td>
+</tr>
+</table>
+
+<div style="text-align:center;">
+<form action="javascript:void(0)"><input type="button" value="CLOSE" onClick="closeIt()"></form>
+</div>
+
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+</body>
+</html>

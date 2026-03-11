@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="gid_slm7" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/gid_slm7" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Option parameters="GD552649.INP" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/gid_slm7" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-frecursive" />
+		</Compiler>
+		<Linker>
+			<Add library="../stepa77/libstepa77.a" />
+			<Add library="../serve77/libserve77.a" />
+		</Linker>
+		<Unit filename="../../X-ray2.F77/flds_unr.for" />
+		<Unit filename="../../X-ray2.F77/gid_inm7.for" />
+		<Unit filename="../../X-ray2.F77/gid_slm7.for" />
+		<Unit filename="../../X-ray2.F77/rdm7prfh.for" />
+		<Unit filename="../../X-ray2.F77/rfmm7_rs.for" />
+		<Unit filename="../../X-ray2.F77/rfms_urd7.for" />
+		<Unit filename="../../X-ray2.F77/rfms_uuu.for" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

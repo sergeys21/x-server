@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of dynamical multiple Bragg diffraction of X-rays in crystals">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    X-ray difffaction, multiple diffraction, dynamical diffraction, crystal data,
+    X-ray crystallography, X-ray material science, X-ray analysis">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray multiple dynamical Bragg diffraction on the Web</title>
+
+   <script language="javascript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+   </script>
+</head>
+<body>
+<img src="images/brl.jpg" border="1" style="display:block; margin:auto; max-width:347px; height:auto;" alt="BRL on the Web!">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" border bgcolor="#c1c1c1"><tr>
+<th><a href="#Intro">Intro</a></th>
+<th><a href="#Guide">BRL Guide</a></th>
+<!-- <th><a href="#FAQ">FAQ</a></th> -->
+<th><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);">Conditions of use</a></th>
+<th><a href="/cgi/www_form.pl?template=brl_form.htm">BRL Access</a></th>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+<p>This page provides interface to a program called <b><i>BRL</i></b> which
+can calculate multiple Bragg diffraction of X-rays by perfect crystals.
+<b><i>BRL</i></b> is based on the paper by S.Stepanov and A.Ulyanenkov <a
+href="pub/Stepanov_ACA_1994_04.pdf">&quot;A New Algorithm for Computation of
+Multiple Bragg Diffraction&quot;, Acta Cryst. (1994) <b>A50</b> 579-585</a>.
+It can simulate up to 12-wave dynamical Bragg diffraction of X-rays from a
+plate-shaped crystal including the cases of X-ray waves grazing along the
+plate surface and Bragg angles being close to 90<sup>o</sup>.</p>
+
+<p>Typically the calculations of multiple Bragg diffraction are reduced to the
+eigenvalue problem for a scattering matrix. If there are no grazing waves
+involved into the diffraction geometry so that the specular reflection effects
+could be neglected, then the size of the scattering matrix is 2N*2N for N-wave
+diffraction. Here the factor of two appears due to the two polarizations (sigma
+and pi) of X-rays. A description of respective theory can be found e.g. in the
+paper by V.G.Kohn [Phys. Stat. Sol. (a) <b>54</b>, 375-384].</p>
+
+<p>However, if the diffraction geometry involves an X-ray wave grazing along
+the crystal surface, the task becomes more complicated. For this case R.Colella
+[Acta Cryst. (1974) <b>A30</b>, 413-423] suggested a theory where the calculations
+of multiple Bragg diffraction are reduced to the eigenvalue problem for 4N*4N
+scattering matrix. This holds even if only one of e.q. 24 waves is grazing
+which is obviously not very effective in terms of calculations.</p>
+
+<p>In <a href="pub/Stepanov_ACA_1994_04.pdf">the paper by S.Stepanov and
+A.Ulyanenkov</a> it was made possible to reduce the calculations of multiple
+Bragg diffraction to a <i>generalized</i> eigenvalue problem for
+2(N+N<sub><small>s</small></sub>)*2(N+N<sub><small>s</small></sub>)
+scattering matrix where N<sub><small>s</small></sub> is the number of grazing
+waves. Thus, if there are no grazing waves, the matrix size is 2N*2N and if
+all of the waves are grazing it becomes 4N*4N. In some cases like only one of
+24 waves is grazing the calculations are reduced dramatically.</p>
+
+<p><b><i>BRL</i></b> has been successfully used to simulate
+<a href="pub/Stepanov_NIM_1994_02.pdf">the applications of Bragg- and
+Laue-case Renninger effect to X-ray double-plane collimation</a> and
+<a href="pub/Stepanov_NIM_1991_02.pdf">the multiple diffraction effect in
+X-ray surface back diffraction</a>.</p>
+
+<h2><a name="Guide"><u>Program Guide</u></a></h2>
+
+<a name="fig1"></a><img src="images/brl_build.gif" style="max-width:min(424px,40%); height:auto; float:right;" hspace="5" vspace="0" border="1" alt="Fig.1">
+<p>The <b><i>BRL</i></b> consists of two steps. At the first step one has to
+enter the parameters required to build incident wavevector. As one can see on
+<a href="#fig1">Fig.1</a>, the specification of two reflections with
+the reciprocal vectors <b>h</b><sub><small>1</small></sub> and
+<b>h</b><sub><small>2</small></sub> determines the axis <b><i>OO'</i></b> on
+which the incident wave vector <b>k</b><sub><small>0</small></sub> should
+originate. Then, there are the following three choices:</p>
+
+<ol>
+
+<li>The beginning of <b>k</b><sub><small>0</small></sub> is determined by
+it's length (i.e. by the wavelength or the energy of X-rays). Note that in
+this case we have two possible <b>k</b><sub><small>0</small></sub> mirrored
+with respect to the plane determined <b>h</b><sub><small>1</small></sub> and
+<b>h</b><sub><small>2</small></sub>. The choice of either one is determined
+by the condition that <b>k</b><sub><small>0</small></sub> must make an obtuse
+angle with the external normal to the crystal surface (i.e. that the incident
+wave can enter the crystal). However, there might be cases when both
+<b>k</b><sub><small>0</small></sub> candidates may satisfy this condition. In
+this case Step-1 outputs both <b>h</b><sub><small>1</small></sub> and allows
+user to pick the one he needs (this control appears on the Step-2 form).
+<br>&nbsp;</li>
+
+<li>The beginning of <b>k</b><sub><small>0</small></sub> is determined by the
+condition that <b>k</b><sub><small>0</small></sub> belongs to the same plane
+as <b>h</b><sub><small>1</small></sub> and <b>h</b><sub><small>2</small></sub>,
+i.e. the diffraction geometry is coplanar, <b>k</b><sub><small>0</small></sub>
+= <b>k</b><sup><small>c</small></sup><sub><small>0</small></sub>. This obviously
+gives the shortest <b>k</b><sub><small>0</small></sub> (the smallest energy)
+and the longest possible wavelength of X-rays. <br>&nbsp;</li>
+
+<li>The beginning of <b>k</b><sub><small>0</small></sub> is fixed by the
+third Bragg condition with the reciprocal vector <b>h</b><sub><small>3</small></sub>
+that do not lie in the same plane as <b>h</b><sub><small>1</small></sub> and
+<b>h</b><sub><small>2</small></sub>. Note that in this case the diffraction
+is at least 4-wave. <br>&nbsp;</li>
+
+</ol>
+
+<p>The other parameters on the form specify the crystal, the direction of
+external normal to the crystal surface, and the conditions to search for
+additional Bragg reflections that may simultaneously occur for given
+<b>k</b><sub><small>0</small></sub>. Note that in principle <b><i>BRL</i></b>
+should work for crystals that belong to any syngony. However, the program has
+been tested cubic crystals only. Any comments on the calculations for
+non-cubic crystals will be greatly appreciated. The crystal code refers to
+respective record in the <a href="x0h.html"><b><i>X0h</i></b>
+database</a>.</p>
+
+<p>Once the form is submitted, X-ray Server validates the input and attempts
+to build <b>k</b><sub><small>0</small></sub>. If everything is found to be
+correct and in particular it is ensured that <b>k</b><sub><small>0</small></sub>
+can enter the crystal (i.e. it makes an obtuse angle with the external surface
+normal), one proceeds to the Step-2. Otherwise, an error is reported.</p>
+
+<p>At Step-2 one has to enter the crystal plate thickness, the incident X-ray
+polarization, and the scan parameters. In terms of the incidence wave polarization,
+the program offers the following three options:</p>
+<ol>
+<li> Mixed polarization. In this case the calculations are carried out for sigma- and pi-polarized
+incident waves and then the intensities for the two cases are averaged (summed and divided by 2).</li>
+<li> Polarization plane is defined by angle to <b>pi</b><sub><small>0</small></sub> specified by user.</li>
+<li> Polarization plane is chosen perpendicular to <b>k</b><sub><small>0</small></sub> and
+<b>k</b><sub><small>1</small></sub> (i.e. along [<b>k</b><sub><small>0</small></sub>*<b>k</b><sub><small>1</small></sub>]
+like <b>sigma</b><sub><small>0</small></sub> in two-wave diffraction case).</li>
+</ol>
+
+<p>In the above selections vectors <b>pi</b><sub><small>0</small></sub> and
+<b>sigma</b><sub><small>0</small></sub> refer to the internal decomposition of
+electric fields in the program, which is:
+<b>sigma</b><sub><small>i</small></sub> ~ [<b>k</b><sub><small>i</small></sub>*<b>surface_normal</b>] and
+<b>pi</b><sub><small>i</small></sub> ~ [<b>sigma</b><sub><small>i</small></sub>*<b>k</b><sub><small>i</small></sub>].
+There is one exception when <b>k</b><sub><small>i</small></sub> is parallel to <b>surface_normal</b>.
+Then, the program chooses  <b>sigma</b><sub><small>i</small></sub> ~
+[<b>k</b><sub><small>i</small></sub>*[<b>h</b><sub><small>1</small></sub>*<b>h</b><sub><small>2</small></sub>]].</p>
+
+<p>In terms of angular scanning input, obviously, one can rotate vector
+<b>k</b><sub><small>0</small></sub> with respect to crystal (or crystal with
+respect to <b>k</b><sub><small>0</small></sub>) in two directions. Respectively,
+the form asks for the range of rotation over the two angles,
+<b>Theta</b><sub><small>1</small></sub> and <b>Theta</b><sub><small>2</small></sub>
+counted along two unit vectors <b>u</b><sub><small>1</small></sub> and
+<b>u</b><sub><small>2</small></sub> orthogonal to <b>k</b><sub><small>0</small></sub>.
+The unit vector <b>u</b><sub><small>2</small></sub> can be selected either
+along the incidence wave polarization vector
+<b>sigma</b><sub><small>0</small></sub>, or
+[<b>k</b><sub><small>0</small></sub>*<b>surface_normal</b>], or
+[<b>k</b><sub><small>0</small></sub>*<b>h</b><sub><small>1</small></sub>].
+Then, the unit vector <b>u</b><sub><small>1</small></sub> is always along
+[<b>k</b><sub><small>0</small></sub>*<b>u</b><sub><small>2</small></sub>],
+i.e. perpendicular to the two. One can request either one-dimensional
+scans or 2D-scans.</p>
+
+<p>If both "mirrored" <b>k</b><sub><small>0</small></sub> and
+<b>k'</b><sub><small>0</small></sub> were found to be able entering the
+crystal, the form provides a control for choosing one of the two.</p>
+
+<p>The submission of Step-2 form initiates the <b><i>BRL</i></b>. If no error
+is found in the input, the calculation starts and the result is returned as
+an HTML page containing data plot and a link to zipped data.</p>
+
+<p>In the case when the number of scan points over either
+<b>Theta</b><sub><small>1</small></sub> or
+<b>Theta</b><sub><small>2</small></sub> is one, the data are written into the
+<b>.DAT</b> files (one per reflection) with the format:</p>
+
+<pre>
+x1, y1
+x2, y2
+....
+xn, yn
+</pre>
+
+<p>Otherwise the <b>.GRD</b> files are produced which are the matrix files
+compatible with the <a href="https://www.goldensoftware.com/products/surfer" target="_blank">Golden
+Software</a> Surfer. These files can be used with GnuPlot too, after removing
+the first 3 header lines.</p>
+
+<hr><br>
+<p><a href="/cgi/www_form.pl?template=brl_form.htm"><b>Click here</b></a> to
+proceed to the <b><i>BRL</i></b> input form.
+</p>
+<hr>
+
+<table>
+<tr valign="middle">
+    <th><img src="images/classic.gif" alt="Beta" border="0"></th>
+    <td>Please, report problems and send comments to &nbsp;
+        <img src="images/sstepanov_email.gif" border="0" style="height:.9em; width:auto; vertical-align:middle;" alt="email">
+    </td>
+</tr>
+<tr valign="top">
+    <td><img src="images/x.gif" border="0" alt="X"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"      onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"         onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+<p>&nbsp;</p>
+
+</body>
+</html>

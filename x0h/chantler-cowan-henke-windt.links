@@ -1,0 +1,15 @@
+If you wish to use external databases for f1 and f2, you can download 
+them as follows from the ESRF DABAX project webpage:
+
+wget -O f1f2_Chantler.dat https://ftp.esrf.fr/pub/scisoft/xop2.3/DabaxFiles/f1f2_Chantler.dat
+wget -O cowan.dat         https://ftp.esrf.fr/pub/scisoft/xop2.3/DabaxFiles/f1f2_BrennanCowan.dat
+wget -O henke.dat         https://ftp.esrf.fr/pub/scisoft/xop2.3/DabaxFiles/f1f2_Henke.dat
+wget -O windt.dat         https://ftp.esrf.fr/pub/scisoft/xop2.3/DabaxFiles/f1f2_Windt.dat
+
+
+Note, that the Chantler data file needs to be reformatted: Energy must be converted from 
+KeV to eV and extra columns need to be removed leaving just PhotonEnergy[eV], f1, f2. 
+Use the following script for converting f1f2_Chantler.dat into chantler.dat:
+
+$ ./convert_Chantler-DABAX.pl
+

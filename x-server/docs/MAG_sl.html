@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of x-ray resonant specular reflection by magnetic multilayers
+    with interface roughness">
+   <meta name="keywords" content="X-ray reflection, X-ray scattering,
+    X-ray material science, X-ray analysis, multilayers, magnetic multilayers,
+    magnetic materials, roughness">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray resonant reflection from magnetic multilayers on the Web</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+</script>
+</head>
+<body>
+<img src="images/mag_sl.gif" border="1" style="display:block; margin:auto; max-width:371px; height:auto;" alt="MAG_sl: X-ray resonant specular reflection from magnetic multilayers">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="6" border bgcolor="#c1c1c1"><tr>
+<th><a href="MAG_sl.html#Intro">Intro</a></th>
+<th><a href="MAG_sl.html#Guide">MAG Guide</a></th>
+<th><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);">Conditions of use</a></th>
+<th><a href="MAG_sl.html#MAG_sl">MAG Access</a></th>
+<th><a href="MAG_sl.html#Retrieve">Retrieve results</a></th>
+<th><a href="automation.html">Automate & fit</a></th>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+
+<p><a name="fig1"></a><img src="images/fig_mag.jpg" style="max-width:min(350px,50%); height:auto; float:right;" hspace="5" vspace="0" border="1" alt="Fig.1">
+This page is a CGI interface to my program <b>MAG_sl</b> simulating x-ray
+resonant specular reflection from magnetic multilayers with the account for
+interface roughness or transition layers. In order to use this program please
+read first the paper by <a href="pub/Stepanov-Sinha_PRB_2000_06.pdf">S.Stepanov
+and S.Sinha <i>&quot;X-ray resonant reflection from magnetic multilayers:
+Recursion matrix algorithm&quot;</i>, Phys. Rev. B, v.<b>61</b>, No 22,
+p.15302-15311, (2000)</a> on which it is based. In short, there is a resonant
+increase at the absorption edges of some rare-earth and transition elements in the
+electric multipole (e.g. quadrupole) part of x-ray scattering amplitude. In this
+case the scattering amplitude becomes a tensor with the orientation dependent on
+the orientation of the magnetic moment of respective atom. The x-ray scattering
+caused by those additional contributions is called &quot;resonant magnetic
+scattering&quot;, although it is electric by nature. When all the magnetic
+moments are oriented in the same direction, one can probe the magnetization
+of the media (e.g. thin magnetic film or magnetic multilayer) with x-rays --
+see Fig.1. The effect on x-ray scattering is the strongest when the magnetic
+field is applied along the direction of x-ray incidence (X-axis) and the
+incident x-rays are circularly polarized. In the other cases the effect may
+still exist but be less measurable. Again, please find more details in
+<a href="pub/Stepanov-Sinha_PRB_2000_06.pdf">the paper</a> and references
+therein.</p>
+
+<p>The <b>MAG_sl</b> software makes use of the same recursive matrix algorithm
+(RMA) as other programs on this site: <a href="GID_sl.html"><b>GID_sl</b></a>,
+<a href="TER_sl.html"><b>TER_sl</b></a>, and <a href="TRDS_sl.html"><b>TRDS_sl</b></a>.
+Besides, all of these programs implement very similar input. Therefore, before
+learning <b>MAG_sl</b> it might be helpful to practice with a simpler software like
+<a href="TER_sl.html"><b>TER_sl</b></a> that simulates x-ray specular reflectivity
+from multilayers with no account for magnetic resonance effects.</p>
+
+
+<hr><br>
+
+<h2><a name="Guide"><u>Program Guide</u></a></h2>
+
+<p>This short guide provides some explanations on the <b>MAG_sl</b>
+data input and outlines the restrictions of this Web interface.</p>
+
+<p>The <b>MAG_sl</b> program is executed on my office PC, that runs a Web
+server under Windows operating system. Since this PC is shared by all of the
+WEB users of my x-ray library, please, <b>avoid overloading the server by
+running multiple tasks at the same time</b>.</p>
+
+<p>To obtain the results from <b>MAG_sl</b> you need to fill out the input form
+and click on the SUBMIT button. If your input is correct, the results will be
+presented as a figure and a link to respective downloadable ZIP file that contains
+all the data. Otherwise, a web page with respective error message will be
+returned.</p>
+
+<p>In case the calculation succeeds, the downloadable ZIP file will contain
+the following ASCII files with the results of calculations:</p>
+
+<ul>
+<li type="square"> <b>MAGxxxxx.INP</b> - input file for the program generated
+                 from the Web interface (substrate data, scan parameters, etc)</li>
+<li type="square"> <b>MAGxxxxx.PRF</b> - another input file for the program
+                 generated from the Web interface (surface layer profile).</li>
+<li type="square"> <b>MAGxxxxx.TBL</b> - the table of calculated parameters
+                 derived from INP and PRF files (dielectric susceptibilities,
+                 etc.). The TBL file also contains the explanation of data
+                 columns in the DAT file. <span style="color:red;">Always check this
+                 file</span> to ensure that your input was treated as you
+                 expected!</li>
+<li type="square"> <b>MAGxxxxx.DAT</b> - the calculated data (the reflectivity
+		 curve, etc) in the <b>x-y</b> ASCII format.</li>
+<li type="square"> <b>MAGxxxxx.PLT</b> - the <a href="http://www.gnuplot.info/"
+                 target="_blank">GNUplot program</a> batch file which can be
+                 used to generate plot from the DAT file.</li>
+</ul>
+
+<p>The specification of substrate, x-rays, and scan parameters is pretty
+straightforward and perhaps does not require any comments.</p>
+
+<p>The specification of surface layer profile is implemented with a simple
+script language. A typical syntax is: </p>
+<pre>
+; comments are allowed in any line, but should not contain special symbols like '"*?$!@%
+period=15
+ t=10 code=GaAs w0=0.8 sigma=2
+ t=10 code=GaAs x=0.3 code2=AlAs x2=0.7 sigma=2
+ t=10 code=SiGe rho=0.9 sigma=2
+ t=10 x0=(5e-4,7e-6) tr=5
+ t=10 w0=.5 tr=4
+ t=10 w0=0.5
+ t=10
+;
+ code=Fe t=35
+ code=Gd t=50 F11=(-0.22,9.35) F1T=(0.37,9.65) mshare=1 mvector=(1 0 0)
+ code=Gd t=50 F11=(-0.22,9.35) F1T=(0.37,9.65) mdensity=2.5 mvector=(1 0 0)
+end period
+</pre>
+
+<p>Here:</p>
+<ul>
+<li type="square"> &quot;;&quot; and &quot;!&quot; are the comment symbols. The
+lines starting with these symbols are ignored and when those symbols are
+present somewhere in the middle of the line, everything to the right of them is
+ignored too.</li>
+
+<li type="square"> &quot;period=&quot; and &quot;end period&quot; mark the
+beginning and the end of a periodic group of layers. The maximum of two
+enclosed periods is allowed.</li>
+
+<li type="square"> &quot;t=10&quot; is the layer thickness in Angstroms.
+<b>NOTE:</b> this is the only <span style="color:red;">mandatory parameter</span> of
+layer (i.e. it cannot be skipped). The other parameters, when not specified,
+are assigned reasonable default values -- either zero (e.g. the rms roughness
+height) or the same as in the substrate (e.g. the material code).</li>
+
+<li type="square"> &quot;code=&quot; is a code of material in the <a
+href="x0h.html"><b>X0h</b> database</a>. Use this code for automatic
+calculation of layers x0 (chi<sub> 0</sub>). For the reference of available
+codes see the substrate code menu or the box at the right side of the
+surface layers input field. Please, be advised that the codes are case
+sensitive (while the script keywords are not).<br>
+Alternatively you can specify the code as a valid chemical formula and provide
+the material density (&quot;rho=&quot;).<br>
+If no code is specified, the substrate code is used by default.</li>
+
+<li type="square"> &quot;x=&quot;, &nbsp;  &quot;code2=&quot;, &nbsp;
+&quot;x2=&quot;, &nbsp; &quot;code3=&quot;&nbsp;&nbsp;  are the parameters to
+specify composite materials and solid solutions. For example, a structure
+like Ga<sub>0.3</sub>Al<sub>0.7</sub>As can be specified as: &quot;code=GaAs
+x=0.3 code2=AlAs&quot;, or even shorter: &quot;x=0.3 code2=AlAs&quot;
+(provided that the substrate is GaAs). You can also specify
+&quot;x2=0.7&quot;, but this is redundant, because the program automatically
+takes care of the sum of all &quot;xN&quot; being equal to one (e.g. the input
+like &quot;x2=0.8&quot; in the above example would cause an error message).
+<br>
+Maximum of 4 codes are allowed per layer and all of them must correspond to
+existing records in the <b>X0h</b> database.</li>
+
+<li type="square"> &quot;x0=&quot;  is the layer x-ray susceptibility
+chi<sub>0</sub>. This parameter, when specified, replaces the data given by
+the <b>X0h</b> database.<br>
+<b>NOTE-1:</b> x0 comes from the dynamical diffraction theory. It is related
+with the parameters <b>delta</b> and <b>eta</b> often used for reflectivity
+as: x0=2*(delta+i*eta).<br>
+<b>NOTE-2:</b> When you specify the x0 parameter it is normally converted into:
+x0 = (-|<i>x0r</i>|, |<i>x0i</i>|). This is because the x-ray server programs
+use the exp(i<b>kr</b>) representation of plane waves for which one normally
+expects <i>x0r</i> &lt; 0. However, this does not cover some absorption edges
+in the soft x-ray region where apparently <i>x0r</i> may change its sign. To
+disable the default transformation, you can use the <b>edge=1</b> flag in
+combination with the &quot;x0=...&quot; input. In this case  the <i>x0r</i>
+data for this layer is used as entered.</li>
+
+<li type="square"> &quot;w0=&quot; is a Debye-Waller-like factor for x0. It may
+be used to correct the x0 value provided by the X0H database:
+<pre>
+                   x0=w0*x0
+</pre>
+By default, this factor is equal to one. Unlike usual Debye-Waller factor, w0
+can be greater than one, because it is simply one more way to specify x0.</li>
+
+<li type="square"> &quot;sigma=&quot; and &quot;tr=&quot; are the rms roughness
+and the transition layer thickness at the upper layer interface, respectively,
+expressed in Angstroms. You are not allowed to specify non-zero values for
+both of these parameters for the same layer and the values should not exceed
+the layer thickness. The calculations with &quot;sigma&quot; are much faster.
+However, at sigma &gt; ~5A they become inaccurate (the Nevot and Croce method
+becomes inapplicable) and &quot;tr&quot;should be used instead (tr=2*sigma).</li>
+
+<li type="square"> &quot;mshare=&quot; and &quot;mdensity=&quot; are the share
+of magnetic atoms (e.g. the number in the [0.:1.] range), and their density
+in atoms/cm^3, respectively. Only one of the two can be specified at the same
+time.</li>
+
+<li type="square"> &quot;mvector=(x,y,z)&quot; is parameter defining the
+orientation of magnetic moments in the layer. The x,y,z coordinates are chosen
+as follows: <b>x</b> along beam on the surface; <b>z</b> along the internal
+normal to the surface, <b>y</b> perpendicular to the above two.</li>
+
+<li type="square"> &quot;F10=&quot;, &quot;F11=&quot;, &quot;F1T=&quot;, are the
+resonant scattering amplitudes renormalized with the <b>(3*lambda)/(8*pi*r0)</b>
+modifier (<b>r0</b> is the classical electron radius):
+
+<img src="images/mag_amplitudes.gif" style="display:block; max-width:min(275px,90%); height:auto; margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:10px;" border="2" alt="MAG_sl Amplitudes">
+
+See Eq.(17)-(21) in the <a href="pub/Stepanov-Sinha_PRB_2000_06.pdf">paper</a>
+for more details. For some of the magnetic resonances those amplitudes can be
+found in the Ph. D. thesis by M.D.Hamrick (see Ref.[41] in the
+<a href="pub/Stepanov-Sinha_PRB_2000_06.pdf">paper</a>). Unfortunately I am
+not aware of any comprehensive tables for those amplitudes. One may consider
+determining them experimentally.</li>
+
+</ul>
+
+<p>Below is a practical example -- a profile for 15-period Gd/Fe multilayer
+with 50 Angstroms of resonantly reflecting Gd and 35 Angstroms of non-resonant
+Fe in each period. The magnetic momenta of all Gd atoms are assumed to be
+aligned along the direction of incident beam (x-axis):</p>
+
+<pre>
+period=15
+ code=Gd t=50 F11=(-0.22,9.35) F1T=(0.37,9.65) mshare=1 mvector=(1 0 0)
+ code=Fe t=35
+end period
+</pre>
+
+<p>For the rest of parameters you are suggested to follow the common sense. To
+ensure that your input was correct, please verify respective listing file --
+a file with the &quot;<b>.TBL</b>&quot; extension in the ZIPped archive
+referred from the <b>MAG_sl</b> results screen. </p>
+
+
+<hr><br>
+<h2><a name="MAG_sl"><u>Access to <b>MAG_sl</b></u></a></h2>
+
+<p>To simplify understanding the <b>MAG_sl</b> you can start with several
+templates listed below. They correspond to Figures 3 to 5 of the
+<a href="pub/Stepanov-Sinha_PRB_2000_06.pdf">paper</a> respectively. All the
+templates <b>link to the same program</b> and provide the same functionality.
+They differ by preloaded data to demonstrate some possible applications of
+<b>MAG_sl</b>.<br> Besides, when submitting the <b>MAG_sl</b> task, it is
+possible to check the progress watching option. The progress watching is
+obviously more comfortable, but it might not work with some old Web browsers.
+Also, it is a bit slower because of putting an additional load on the network
+and launching each 5 seconds a monitoring program on my computer. Welcome to
+try both of the ways and choose the most convenient for your needs.</p>
+
+<!-- -----------------------------POST----------------------------------- -->
+<div style="text-align:center;"><img src="images/pi_pin.gif" alt=" ">
+<b><span style="color:red">New of December-2012:</span> <a href="News.html#POST">POST-Method Templates</a></b>
+</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" bgcolor="silver" border><tr><td>
+<ol>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig3.htm&method=post">Data corresponding to Fig.3 of the paper</a>&nbsp;</b><br>&nbsp;</li>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig4.htm&method=post">Data corresponding to Fig.4 of the paper</a>&nbsp;</b><br>&nbsp;</li>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig5.htm&method=post">Data corresponding to Fig.5 of the paper</a>&nbsp;</b></li>
+</ol>
+</td></tr></table>
+</td></tr></table>
+<!-- ------------------------END-OF-POST--------------------------------- -->
+
+<!-- -----------------------------GET------------------------------------ -->
+<div style="text-align:center; max-width:min(900px,90%); margin:auto;">
+<b>GET-Method Templates</b><br>
+This is an older, but better tested method. Generally it works very well except for <br>
+<a href="News.html#POST">known problems with the IE browser &amp; some firewalls</a> when
+the structure description exceeds 2K bytes (with some firewalls the restriction may be
+even 1K bytes).</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" bgcolor="silver" border><tr><td>
+<ol>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig3.htm">Data corresponding to Fig.3 of the paper</a>&nbsp;</b><br>&nbsp;</li>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig4.htm">Data corresponding to Fig.4 of the paper</a>&nbsp;</b><br>&nbsp;</li>
+<li><b><a href="/cgi/www_form.pl?template=MAG_sl_fig5.htm">Data corresponding to Fig.5 of the paper</a>&nbsp;</b></li>
+</ol>
+</td></tr></table>
+</td></tr></table>
+<!-- --------------------------END-OF-GET-------------------------------- -->
+
+<br><hr><br>
+
+<h2><a name="Retrieve"><u>Retrieve results</u></a></h2>
+
+<p>Here is a tool to retrieve the results of finished jobs if you know the job ID.
+Some possible uses of this tool are:</p>
+<ol>
+<li> You started a job with the progress watch option; the server returned
+the job ID and began reporting the progress. However, you found that the
+calculations would take too long. Then, you may break the connection and retrieve
+the data later on with this tool. If the calculations are not finished, the
+tool will resume the watch process.</li>
+<li> The data are accidentally deleted from your client computer and you
+want another copy of them. In this case you should be aware that results are
+usually stored on the server for about one day after respective job is finished.</li>
+</ol>
+
+<form action="/cgi/wwwwatch.pl" method="get">
+<script language="javascript" type="text/javascript">
+  document.write('<input type="hidden" name="epoch" value='+Date.now()+'>'+"\n");
+</script>
+<b>Job ID: </b>
+<input type="text" name="jobname" size="12" value="MAGxxxxx">
+<input type="submit" value="Retrieve!">
+</form>
+
+<br><hr><br>
+
+<table>
+<tr valign="top">
+    <td><img src="images/x.gif" alt="X" border="0"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"      onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"         onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+
+<p>
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+</p>
+</body>
+</html>

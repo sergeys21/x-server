@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<!-- Insert html base -->
+   <link rel="stylesheet" href="style_form.css" type="text/css">
+   <style type="text/css">
+      form,input,select,textarea {font-size:max(0.7em,1.5vw); font-family:monospace; font-weight:normal;}
+   </style>
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides access to the lists">
+   <meta name="keywords" content="X-ray diffraction, dynamical diffraction,
+    of X0h databases">
+   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+   <title>X-ray dynamical diffraction data on the Web</title>
+</head>
+<body>
+
+<h2 style="text-align:center">
+<img src="images/x0h_web_th_th.jpg" border="0" style="display:block; max-width:152px; height:auto; margin:auto;" alt="X0h on the Web!"><br>
+<u><b><i>X0h DB</i></b> Listing Request Form</u>
+</h2>
+
+<b>Questions? Please, check <a href="x0h.html"><i>X0h</i> documentation</a></b>.
+<br>
+<b>Need more? Read about <a href="x0h.html#Auto">advanced interaction with <i>X0h</i></a></b>.
+<br>
+
+<p>&nbsp;</p>
+
+<table style="width:min(700px,80%);" border="0" bgcolor="#c1c1c1" cellpadding="0" cellspacing="0"><tr><td>
+<table width="100%" border="1" bgcolor="#c1c1c1" cellpadding="5"><tr><td>
+
+<form action="/cgi/www_dbli.pl" method="get" name="dbliform">
+
+<table cellpadding="5" width="100%">
+<tr><td><span style="color:red"><b>Selection:</b></span> </td>
+                    <td><select name="x0hdb">
+                      <option value="crystals" selected>Crystals
+                      <option value="amorphous">Amorphous materials
+                      <option value="atoms">Atoms
+                      <option value="all+atoms">All: crystals, amorphous materials and atoms
+<!--                  <option value="all%2Batoms">All: crystals, amorphous materials and atoms -->
+                      <option value="cubic-crystals">Cubic crystals
+                      <option value="amorphous+atoms">Amorphous materials and atoms
+                      <option value="all">Crystals and amorphous materials
+                      <option value="waves">Characteristic X-ray lines
+                    </select></td>
+</tr>
+
+<tr><td><span style="color:red"><b>Format:</b></span> </td>
+<!--                <td><input type=checkbox name="textout" value=1><b>Text output</b></td> -->
+                    <td><input type="radio" name="textout" value="0" checked><b>Html</b><b>&nbsp;</b>
+                        <input type="radio" name="textout" value="1"        ><b>Text</b></td>
+</tr>
+
+<tr><td><span style="color:red"><b>Details:</b></span> </td>
+                    <td><input type="radio" name="namesonly" value="0" checked><b>Dump</b><b>&nbsp;</b>
+                        <input type="radio" name="namesonly" value="1"        ><b>List</b></td>
+</tr>
+
+<tr><td colspan="2"><input type="submit" value="Get DB List!"><input type="reset"></td>
+</tr>
+</table>
+
+</form>
+
+</td></tr></table>
+</td></tr></table>
+
+<!-- <br><hr><br> -->
+
+<table>
+<!-- Insert site navigation -->
+</table>
+
+<br>&nbsp;<br>
+
+<table style="width:min(700px,80%);" border="2" cellpadding="6" cellspacing="0" bgcolor="#ffffff"><tr><td><b>
+<span style="color:red">ATTENTION:</span> New structure submissions are welcome. Submissions are normally added to the
+database within a day. <a href="structure_submission_example.html">Click here</a>
+for instructions how to submit a structure. Please, e-mail structure descriptions
+to <img src="images/sstepanov_email_w.gif" border="0" style="height:.9em; width:auto; vertical-align:middle;" alt="email">.
+</b></td></tr></table>
+
+<br>&nbsp;<br>
+
+<!-- Insert change date -->
+
+</body>
+</html>

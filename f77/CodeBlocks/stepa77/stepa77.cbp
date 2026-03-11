@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="stepa77" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="stepa77" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gfortran" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="stepa77" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gfortran" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../Utility.F77/algebbkp.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/algebra.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/algebra2.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/algebra3.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/cpoly.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/finli.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/get_server_root.for" />
+		<Unit filename="../../Utility.F77/get_server_url.for" />
+		<Unit filename="../../Utility.F77/getuname.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/htmlstop.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/insert_urlbase.for" />
+		<Unit filename="../../Utility.F77/levi.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/list_inp.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/mkerfile.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Utility.F77/navigate_site.for" />
+		<Unit filename="../../X-ray1.F77/bragan.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/bragan8.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/chipars2.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/chiparse.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/get_wave.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/incivect.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/indcheck.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/sigmapi.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/wave2e.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0h1.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0h2.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0h_lisu.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0hf1f2.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0hmake.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/x0hread.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray1.F77/xrh_rel.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/build_k0.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/flds_uni.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/get_x0.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/get_x0h.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/get_xh97.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/recalcxh.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/surfnorm.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/transi_r.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../X-ray2.F77/xabsmax.for" />
+		<Unit filename="../../X-ray2.F77/xinput97.for">
+			<Option weight="0" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

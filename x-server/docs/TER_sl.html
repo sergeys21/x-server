@@ -1,0 +1,329 @@
+<!doctype html>
+<html>
+<head>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Author" content="Sergey Stepanov">
+   <meta name="Description" content="This page provides WEB interface to
+    calculations of x-ray specular reflection by multilayers with interface
+    roughness">
+   <meta name="keywords" content="X-ray reflection, X-ray scattering,
+    X-ray material science, X-ray analysis, multilayers, roughness">
+   <link rel="shortcut icon" href="favicon.ico" />
+   <title>X-ray reflection from multilayers on the Web</title>
+<script language="JavaScript" type="text/javascript">
+<!-- hide
+function LargeFloat(webpage, windowname, pagewidth, pageheight) {
+  launch = window.open (webpage, windowname, 'width='+pagewidth+',height='+pageheight
+         +',toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1');
+}
+// -->
+</script>
+</head>
+<body>
+<img src="images/ter_sl.gif" border="1"  style="display:block; margin:auto; max-width:min(371px,90%); height:auto;" alt="TER_sl: X-ray specular reflection from multilayers with rough interfaces">
+<br>
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="6" border bgcolor="#c1c1c1"><tr>
+<th><a href="#Intro">Intro</a></th>
+<th><a href="#Guide">TER Guide</a></th>
+<th><a href="javascript:void(0)" onClick="LargeFloat('License.html','License',600,600);">Conditions of use</a></th>
+<th><a href="#TER_sl">TER Access</a></th>
+<th><a href="#Retrieve">Retrieve results</a></th>
+<th><a href="automation.html">Automate & fit</a></th>
+</tr></table>
+</td></tr></table>
+
+<h2><a name="Intro"><u>Introduction</u></a></h2>
+
+<p>This page is a CGI interface to my program <b>TER_sl</b> simulating x-ray
+specular reflection from multilayers with the account for interface roughness
+or transition layers. The method implemented in <b>TER_sl</b> is the
+recursive matrix algorithm <a href="GID_sl.html">(RMA)</a> developed for
+grazing-incidence x-ray diffraction. The RMA is neither Parratt's nor Abeles',
+although it can be reduced to each of them. The advantage of RMA is that the
+same code works for both the diffraction and reflection problems.</p>
+
+<p><img src="images/pi_pin.gif" alt=" ">Starting July 2005 the program can also
+calculate and print the intensity of standing waves inside the target.
+The standing waves can be used to analyze secondary photo emission effects
+like fluorescence, the formation of periodic wavefields inside multilayers,
+the Yoneda effect, and etc.</p>
+
+<hr><br>
+<h2><a name="Guide"><u>Program Guide</u></a></h2>
+
+<p>This short guide provides some explanations on the <b>TER_sl</b>
+data input and outlines the restrictions of this Web interface.</p>
+
+<p>The <b>TER_sl</b> program is executed on my PC, which runs a Web server
+under Windows operating system. Since this PC is shared by all of the WEB
+users of my x-ray library, please, <span style="color:red"><b>avoid overloading the
+server by running multiple tasks at the same time</b></span>.</p>
+
+<p>To obtain the results from <b>TER_sl</b> you need to fill out the input form
+and click on the SUBMIT button. If your input is correct, the results will be
+presented as a figure and a reference to downloadable ZIP file with the data.
+Otherwise, an error report will be returned.</p>
+
+<p>The specification of surface layer profile is implemented with a simple
+script language. A typical syntax is: </p>
+<pre>
+; comments are allowed in any line, but should
+; not contain special symbols like '"*?$!@%
+period=5
+t=10 code=GaAs w0=0.8 sigma=2
+t=10 code=GaAs x=0.3 code2=AlAs x2=0.7 sigma=2
+t=10 code=SiGe rho=0.9 sigma=2
+t=10 x0=(5e-4,7e-6) tr=5
+t=10 w0=.5 tr=4
+t=10 w0=0.5
+t=10
+end period
+</pre>
+
+<p>Here:</p>
+
+<ul>
+<li type="square"> &quot;;&quot; and &quot;!&quot; are the comment signs. The
+lines starting with these symbols are ignored and if these symbols are
+present at the middle of a line, everything to the right of them is ignored
+too.</li>
+
+<li type="square"> &quot;period=&quot; and &quot;end period&quot; mark the
+beginning and the end of a periodic group of layers. The maximum of two
+enclosed periods is allowed.</li>
+
+<li type="square"> &quot;t=10&quot; is the layer thickness in Angstroms.
+<b>NOTE:</b> this is the only parameter of layer which cannot be skipped.</li>
+
+<li type="square"> &quot;code=&quot; is a code of material in the <a
+href="x0h.html"><b>X0h</b> database</a>. Use this code for automatic
+calculation of layers x0 (chi<sub> 0</sub>). For the reference of available
+codes see the menu for the substrate or in the box at the right side of the
+profile input field. Please, be advised that the codes are case sensitive
+(while the script keywords are not).<br>
+Alternatively you can specify a valid chemical formula for the code and
+the material density (&quot;rho=&quot;).<br>
+If no code is specified, the substrate code is used by default.</li>
+
+<li type="square"> &quot;x=&quot;, &nbsp;  &quot;code2=&quot;, &nbsp;
+&quot;x2=&quot;, &nbsp; &quot;code3=&quot;&nbsp;&nbsp;  are the parameters to
+specify composite materials and solid solutions. For example, a structure
+like Ga<sub>0.3</sub>Al<sub>0.7</sub>As can be specified as: &quot;code=GaAs
+x=0.3 code2=AlAs&quot;, or even shorter: &quot;x=0.3 code2=AlAs&quot;
+(provided that the substrate is GaAs). You can also specify
+&quot;x2=0.7&quot;, but this is redundant, because the program automatically
+takes care of the sum of all &quot;xN&quot; being equal to one (e.g. the input
+like &quot;x2=0.8&quot; in the above example would cause an error message).<br>
+Maximum of 4 codes are allowed and all of them must be valid ones in the
+<b>X0h</b> database.</li>
+
+<li type="square"> &quot;x0=&quot;  is the layer x-ray susceptibility
+chi<sub>0</sub>. This parameter, when specified, replaces the data given by
+the <b>X0h</b> database.<br>
+<b>NOTE:</b> x0 comes from the dynamical diffraction theory. It is related
+with the parameters <b>delta</b> and <b>eta</b> often used for reflectivity
+as: x0=2*(delta+i*eta).</li>
+
+<li type="square"> &quot;w0=&quot; is a Debye-Waller-like factor for x0. It may
+be used to correct the x0 value provided by the X0H database:
+<pre>
+                   x0=w0*x0
+</pre>
+By default, this factor is equal to one. Unlike usual Debye-Waller factor, w0
+can be greater than one, because it is simply one more way to specify x0.</li>
+
+<li type="square"> &quot;sigma=&quot; and &quot;tr=&quot; are the rms roughness
+and the transition layer thickness at the upper layer interface, respectively,
+expressed in Angstroms. You are not allowed to specify non-zero values for
+both of these parameters for the same layer and the values should not exceed
+the layer thickness. The calculations with &quot;sigma&quot; are much faster.
+However, at sigma &gt; 5A they become inaccurate (the Nevot and Croce method
+becomes inapplicable) and &quot;tr&quot;should be used instead (tr=2*sigma).</li>
+
+</ul>
+
+<p>Here is a practical example -- a profile for 20-period AlAs/GaAs superlattice
+with 100 Angstroms of GaAs and 70 Angstroms of AlAs in each period; the structure
+is covered by additional 200A of GaAs and, finally, there is some 20A amorphous
+oxide layer on the surface:</p>
+
+<pre>
+; Oxide layer:
+t=20. w0=0.7
+; -- w0=0.7 because of reduced layer density
+
+; Cap layer:
+t=200.
+; -- when the code is not specified, then
+;    substrate code (GaAs) is used
+
+; Superlattice:
+period=20
+  t=100.
+  t=70. code=AlAs
+end period
+</pre>
+
+<p>For the rest of parameters you are suggested to follow the common sense. To
+ensure that your input was correct, please verify respective listing file --
+a file with the &quot;<b>.TBL</b>&quot; extension in the ZIPped archive
+referred from the <b>TER_sl</b> results screen. </p>
+
+<hr><br>
+<h2><a name="TER_sl"><u>Access to <b>TER_sl</b></u></a></h2>
+
+<p>To simplify understanding the <b>TER_sl</b> you are provided the templates
+listed below. All the templates <b>link to the same program</b> and provide
+the same functionality. They differ by preloaded data to demonstrate some
+possible applications of <b>TER_sl</b>.<br>
+Besides, when submitting the <b>TER_sl</b> task, it is possible to check the
+progress watching option. The progress watching is obviously more comfortable,
+but it might not work with some old Web browsers. Also, it is a bit slower
+because of putting an additional load on the network and launching each 5
+seconds a watch program on my computer. Welcome to try both of the ways and
+choose the most convenient for your needs.</p>
+
+<!-- -----------------------------POST----------------------------------- -->
+<div style="text-align:center;">
+<img src="images/pi_pin.gif" alt=" "> <b><span style="color:red;">New of April-2012:</span>
+<a href="News.html#POST">POST-Method Templates</a></b>
+</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" bgcolor="silver" border><tr><td>
+<dl>
+
+<dt><b> 1. <a href="/cgi/www_form.pl?template=TER_sl_perfect.htm&method=post">Specular
+reflection from perfect reflectors</a></b>
+<dd>Use this to check the width and shape of total reflection curves and to
+analyze x-ray mirrors.<br>&nbsp;</dd>
+
+<dt><b> 2. <a href="/cgi/www_form.pl?template=TER_sl_multilay.htm&method=post">Specular
+reflection from multilayers</a></b>
+<dd>Use this e.g. for A3B5, A2B6, SiGe and other semiconductor structures, W/C
+multilayer mirrors, etc.<br>&nbsp;
+
+<hr style="width:80%; margin:auto;"><br></dd>
+
+<dt><b> 1a. <a href="/cgi/www_form.pl?template=TER_sl_perfect_sw.htm&method=post">Specular
+reflection from perfect reflectors + standing waves</a></b>
+<dd>Use this to check the width and shape of total reflection curves and to
+analyze x-ray mirrors.<br>&nbsp;</dd>
+
+<dt><b> 2a. <a href="/cgi/www_form.pl?template=TER_sl_multilay_sw.htm&method=post">Specular
+reflection from multilayers + standing waves</a></b>
+<dd>Use this e.g. for A3B5, A2B6, SiGe and other semiconductor structures, W/C
+multilayer mirrors, etc.</dd>
+
+</dl></td></tr></table>
+</td></tr></table>
+<!-- ------------------------END-OF-POST--------------------------------- -->
+
+<p>&nbsp;</p>
+
+<!-- -----------------------------GET------------------------------------ -->
+<div style="text-align:center; max-width:min(900px,90%); margin:auto;">
+<b>GET-Method Templates</b><br>
+This is an older, but better tested method. Generally it works very well except for<br>
+<a href="News.html#POST">known problems with IE browser &amp; some firewalls</a>
+for structure description exceeding 2K bytes.
+</div>
+
+<table style="max-width:min(900px,90%); margin:auto;" cellspacing="0" cellpadding="0" border="0" bgcolor="#c1c1c1"><tr><td>
+<table width="100%" cellspacing="5" cellpadding="4" bgcolor="silver" border><tr><td>
+<dl>
+
+<dt><b> 1. <a href="/cgi/www_form.pl?template=TER_sl_perfect.htm">Specular
+reflection from perfect reflectors</a></b>
+<dd>Use this to check the width and shape of total reflection curves and to
+analyze x-ray mirrors.<br>&nbsp;</dd>
+
+<dt><b> 2. <a href="/cgi/www_form.pl?template=TER_sl_multilay.htm">Specular
+reflection from multilayers</a></b>
+<dd>Use this e.g. for A3B5, A2B6, SiGe and other semiconductor structures, W/C
+multilayer mirrors, etc.<br>&nbsp;
+
+<hr style="width:80%; margin:auto;"><br></dd>
+
+<dt><b> 1a. <a href="/cgi/www_form.pl?template=TER_sl_perfect_sw.htm">Specular
+reflection from perfect reflectors + standing waves</a></b>
+<dd>Use this to check the width and shape of total reflection curves and to
+analyze x-ray mirrors.<br>&nbsp;</dd>
+
+<dt><b> 2a. <a href="/cgi/www_form.pl?template=TER_sl_multilay_sw.htm">Specular
+reflection from multilayers + standing waves</a></b>
+<dd>Use this e.g. for A3B5, A2B6, SiGe and other semiconductor structures, W/C
+multilayer mirrors, etc.</dd>
+
+</dl></td></tr></table>
+</td></tr></table>
+<!-- --------------------------END-OF-GET-------------------------------- -->
+
+<br><hr><br>
+
+<h2><a name="Retrieve"><u>Retrieve results</u></a></h2>
+
+<p>Here is a tool to retrieve the results of finished jobs if you know the job ID.
+Some possible uses of this tool are:</p>
+<ol>
+<li> You started a job with the progress watch option; the server returned
+the job ID and began reporting the progress. However, you found that the
+calculations would take too long. Then, you may break the connection and retrieve
+the data later on with this tool. If the calculations are not finished, the
+tool will resume the watch process.</li>
+<li> The data are accidentally deleted from your client computer and you
+want another copy of them. In this case you should be aware that results are
+usually stored on the server for about one day after respective job is finished.</li>
+</ol>
+
+<form action="/cgi/wwwwatch.pl" method="get">
+<script language="javascript" type="text/javascript">
+  document.write('<input type="hidden" name="epoch" value='+Date.now()+'>'+"\n");
+</script>
+<b>Job ID: </b>
+<input type="text" name="jobname" size="12" value="TERxxxxx">
+<input type="submit" value="Retrieve!">
+</form>
+
+<br><hr><br>
+
+<table>
+<tr valign="top">
+    <td><img src="images/x.gif" alt="X" border="0"></td>
+    <td><form action="javascript:void(0)"><b>Site navigation:</b>
+    <select name="list">
+    <option value="index.shtml" selected onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Home page</option>
+    <option value="x0h.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering factors (X0h)</option>
+    <option value="x0h_search.html"      onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">Search for X-ray Bragg planes (X0h-search)</option>
+    <option value="GID_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Bragg diffraction (GID_sl)</option>
+    <option value="TER_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray specular reflection (TER_sl)</option>
+    <option value="TRDS_sl.html"         onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray scattering from roughness (TRDS_sl)</option>
+    <option value="MAG_sl.html"          onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray resonant reflection (MAG_sl)</option>
+    <option value="BRL.html"             onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">X-ray Multiple Bragg diffraction (BRL)</option>
+    </select>
+    <input type="button" value="Go!" onClick="window.location.href=this.form.list.options[this.form.list.selectedIndex].value">
+    </form></td>
+</tr>
+</table>
+<p>
+
+<!-- This script inserts a 'Last updated Date Stamp' -->
+<script language="javascript" type="text/javascript">
+<!--
+var MonthOfYearArray = ['January','February','March','April','May','June','July',
+                        'August','September','October','November','December'];
+var LastModifiedDate = new Date(document.lastModified);
+var day       = LastModifiedDate.getDate();
+var month     = LastModifiedDate.getMonth()+1;
+var monthName = MonthOfYearArray[month-1];
+var year      = LastModifiedDate.getYear();
+if (year < 2000) {year += 1900;}
+document.write('<span style="font-size:1em;">Last updated '+monthName+' '+day+', '+year+'</span><br>');
+//-->
+</script>
+
+</body>
+</html>

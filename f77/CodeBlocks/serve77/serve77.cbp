@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="serve77" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="serve77" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gfortran" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-fbacktrace -ffpe-trap=invalid,zero,overflow,underflow,denormal" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="serve77" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gfortran" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../Serve.F77/case.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/caselat.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/caserus.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/command32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/comprsp.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/convtime.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/current.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/datestam.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/defpat.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/delfile.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/duration.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/exefile.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/exit77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/expired.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/fileexst77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/fileopnd.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/fileredy.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/flush77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/freelun.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/gefilsiz77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/get_arg77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/get_cmdline.for" />
+		<Unit filename="../../Serve.F77/getdat_gettim_77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/getenv77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/getfiledate77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/getfiledate77_nn.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/getinput.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/getos.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/inpkey32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/keyin77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/lengh32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/message77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/mergequery.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/n4_pkr0.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/n_column.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/nargs77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/nonascii.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/nowrite.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/npower.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/npower8.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/nprgmax.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/nrunning.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/openbin77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/openfile77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/openlist77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/pakint.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/pakint4.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/pakreal.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/pause77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/priblo.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/pritxt32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/rdint.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/rdint4.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/rdreal.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/rdreal8.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/round.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/round2.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/round8.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/runqq77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/seconds.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/selecfil32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/setcwd77.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/sleep32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/tabexpan.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/text0_32.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/textout.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/timestam.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/txt_args.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/txtshift.for">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="../../Serve.F77/weekday.for">
+			<Option weight="0" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
