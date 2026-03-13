@@ -1308,7 +1308,7 @@ c
      *  ' <tr><td',a,'>Relative intensity ',
      *               '(<i>x<sub>h</sub></i> / ',
      *                '<i>x<sub>0</sub></i>) : &nbsp;</td>',
-     *       '<td',a,'>',g12.5,' %/td></tr>')
+     *       '<td',a,'>',g12.5,' %</td></tr>')
 c
   185   format(
      *  ' <tr><td',a,'>',a,'Laue-case absorption depth',
