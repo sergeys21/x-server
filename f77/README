@@ -23,8 +23,12 @@ In CodeBlocks:
  - Go to Settings -> Compiler -> Linker -> add "lapack" library
  - Go to File -> Open -> open f77/CodeBlocks/_xserver/xserver.workspace
  - Go to Build -> Build Workspace
+ 
+Alternatively (not using CodeBlocks):
+  cd f77/CodeBlocks/_xserver
+  make
 
-Install compiled executables into the x0h directory:
+In either case (CodeBlocks or make),Install compiled executables into the x0h directory:
 
 $ f77/CodeBlocks/xserver_install_linux.pl
 
