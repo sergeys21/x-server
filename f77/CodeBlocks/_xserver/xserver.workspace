@@ -4,7 +4,6 @@
 		<Project filename="../brl_build/brl_build.cbp">
 			<Depends filename="../brls12/brls12.cbp" />
 			<Depends filename="../cofu_dec/cofu_dec.cbp" />
-			<Depends filename="../gid_slm5/gid_slm5.cbp" />
 			<Depends filename="../gid_slm7/gid_slm7.cbp" />
 			<Depends filename="../grd2dat/grd2dat.cbp" />
 			<Depends filename="../grd2gnu/grd2gnu.cbp" />
