@@ -13,7 +13,7 @@ INC =
 CFLAGS = -Wall
 RESINC = 
 LIBDIR = 
-LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a -l lapack
+LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a -Wl,-Bdynamic -llapack
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
@@ -25,7 +25,7 @@ LIB_DEBUG = $(LIB)
 LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj/Debug
 DEP_DEBUG = 
-OUT_DEBUG = bin/Debug/grd2dat
+OUT_DEBUG = bin/Debug/grd2grd
 
 INC_RELEASE = $(INC)
 CFLAGS_RELEASE = $(CFLAGS) -O2
@@ -36,11 +36,11 @@ LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
-OUT_RELEASE = bin/Release/grd2dat
+OUT_RELEASE = bin/Release/grd2grd
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/__/__/Utility.F77/grd2dat.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/__/__/Utility.F77/grd2grd.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/__/__/Utility.F77/grd2dat.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/__/__/Utility.F77/grd2grd.o
 
 all: debug release
 
@@ -57,8 +57,8 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/__/__/Utility.F77/grd2dat.o: ../../Utility.F77/grd2dat.for
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../Utility.F77/grd2dat.for -o $(OBJDIR_DEBUG)/__/__/Utility.F77/grd2dat.o
+$(OBJDIR_DEBUG)/__/__/Utility.F77/grd2grd.o: ../../Utility.F77/grd2grd.for
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../Utility.F77/grd2grd.for -o $(OBJDIR_DEBUG)/__/__/Utility.F77/grd2grd.o
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -76,8 +76,8 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/__/__/Utility.F77/grd2dat.o: ../../Utility.F77/grd2dat.for
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../Utility.F77/grd2dat.for -o $(OBJDIR_RELEASE)/__/__/Utility.F77/grd2dat.o
+$(OBJDIR_RELEASE)/__/__/Utility.F77/grd2grd.o: ../../Utility.F77/grd2grd.for
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../Utility.F77/grd2grd.for -o $(OBJDIR_RELEASE)/__/__/Utility.F77/grd2grd.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)

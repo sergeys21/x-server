@@ -6,99 +6,99 @@
 WRKDIR = `pwd`
 MAKE = make
 
-all: ___serve77_serve77 ___brl_build_brl_build ___brls12_brls12 ___cofu_dec_cofu_dec ___gid_slm7_gid_slm7 ___grd2dat_grd2dat ___grd2gnu_grd2gnu ___grd2grd_grd2grd ___mag_sl98_mag_sl98 ___mag_sl99_mag_sl99 ___trds_99_trds_99 ___ter_slm5_ter_slm5 ___x0h_web_x0h_web ___x0p_web_x0p_web ___stepa77_stepa77
+all: serve77 stepa77 brl_build brls12 cofu_dec gid_slm7 grd2dat grd2gnu grd2grd mag_sl98 mag_sl99 trds_99 ter_slm5 x0h_web x0p_web
 
-___serve77_serve77: 
-	$(MAKE) -C ../serve77 all -f serve77.cbp.mak
+serve77: 
+	$(MAKE) -C ../serve77 all -f Makefile
 
-___brl_build_brl_build: ___brls12_brls12 ___cofu_dec_cofu_dec ___gid_slm7_gid_slm7 ___grd2dat_grd2dat ___grd2gnu_grd2gnu ___grd2grd_grd2grd ___mag_sl98_mag_sl98 ___mag_sl99_mag_sl99 ___trds_99_trds_99 ___ter_slm5_ter_slm5 ___x0h_web_x0h_web ___x0p_web_x0p_web ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../brl_build all -f brl_build.cbp.mak
+stepa77: serve77
+	$(MAKE) -C ../stepa77 all -f Makefile
 
-___brls12_brls12: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../brls12 all -f brls12.cbp.mak
+brl_build: brls12 cofu_dec gid_slm7 grd2dat grd2gnu grd2grd mag_sl98 mag_sl99 trds_99 ter_slm5 x0h_web x0p_web stepa77 serve77
+	$(MAKE) -C ../brl_build all -f Makefile
 
-___cofu_dec_cofu_dec: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../cofu_dec all -f cofu_dec.cbp.mak
+brls12: stepa77 serve77
+	$(MAKE) -C ../brls12 all -f Makefile
 
-___gid_slm7_gid_slm7: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../gid_slm7 all -f gid_slm7.cbp.mak
+cofu_dec: stepa77 serve77
+	$(MAKE) -C ../cofu_dec all -f Makefile
 
-___grd2dat_grd2dat: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../grd2dat all -f grd2dat.cbp.mak
+gid_slm7: stepa77 serve77
+	$(MAKE) -C ../gid_slm7 all -f Makefile
 
-___grd2gnu_grd2gnu: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../grd2gnu all -f grd2gnu.cbp.mak
+grd2dat: stepa77 serve77
+	$(MAKE) -C ../grd2dat all -f Makefile
 
-___grd2grd_grd2grd: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../grd2grd all -f grd2grd.cbp.mak
+grd2gnu: stepa77 serve77
+	$(MAKE) -C ../grd2gnu all -f Makefile
 
-___mag_sl98_mag_sl98: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../mag_sl98 all -f mag_sl98.cbp.mak
+grd2grd: stepa77 serve77
+	$(MAKE) -C ../grd2grd all -f Makefile
 
-___mag_sl99_mag_sl99: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../mag_sl99 all -f mag_sl99.cbp.mak
+mag_sl98: stepa77 serve77
+	$(MAKE) -C ../mag_sl98 all -f Makefile
 
-___trds_99_trds_99: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../trds_99 all -f trds_99.cbp.mak
+mag_sl99: stepa77 serve77
+	$(MAKE) -C ../mag_sl99 all -f Makefile
 
-___ter_slm5_ter_slm5: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../ter_slm5 all -f ter_slm5.cbp.mak
+trds_99: stepa77 serve77
+	$(MAKE) -C ../trds_99 all -f Makefile
 
-___x0h_web_x0h_web: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../x0h_web all -f x0h_web.cbp.mak
+ter_slm5: stepa77 serve77
+	$(MAKE) -C ../ter_slm5 all -f Makefile
 
-___x0p_web_x0p_web: ___stepa77_stepa77 ___serve77_serve77
-	$(MAKE) -C ../x0p_web all -f x0p_web.cbp.mak
+x0h_web: stepa77 serve77
+	$(MAKE) -C ../x0h_web all -f Makefile
 
-___stepa77_stepa77: ___serve77_serve77
-	$(MAKE) -C ../stepa77 all -f stepa77.cbp.mak
+x0p_web: stepa77 serve77
+	$(MAKE) -C ../x0p_web all -f Makefile
 
-clean: clean____serve77_serve77 clean____brl_build_brl_build clean____brls12_brls12 clean____cofu_dec_cofu_dec clean____gid_slm7_gid_slm7 clean____grd2dat_grd2dat clean____grd2gnu_grd2gnu clean____grd2grd_grd2grd clean____mag_sl98_mag_sl98 clean____mag_sl99_mag_sl99 clean____trds_99_trds_99 clean____ter_slm5_ter_slm5 clean____x0h_web_x0h_web clean____x0p_web_x0p_web clean____stepa77_stepa77
+clean: clean_serve77 clean_brl_build clean_brls12 clean_cofu_dec clean_gid_slm7 clean_grd2dat clean_grd2gnu clean_grd2grd clean_mag_sl98 clean_mag_sl99 clean_trds_99 clean_ter_slm5 clean_x0h_web clean_x0p_web clean_stepa77
 
-clean____serve77_serve77: 
-	$(MAKE) -C ../serve77 clean -f serve77.cbp.mak
+clean_serve77: 
+	$(MAKE) -C ../serve77 clean -f Makefile
 
-clean____brl_build_brl_build: 
-	$(MAKE) -C ../brl_build clean -f brl_build.cbp.mak
+clean_stepa77: 
+	$(MAKE) -C ../stepa77 clean -f Makefile
 
-clean____brls12_brls12: 
-	$(MAKE) -C ../brls12 clean -f brls12.cbp.mak
+clean_brl_build: 
+	$(MAKE) -C ../brl_build clean -f Makefile
 
-clean____cofu_dec_cofu_dec: 
-	$(MAKE) -C ../cofu_dec clean -f cofu_dec.cbp.mak
+clean_brls12: 
+	$(MAKE) -C ../brls12 clean -f Makefile
 
-clean____gid_slm7_gid_slm7: 
-	$(MAKE) -C ../gid_slm7 clean -f gid_slm7.cbp.mak
+clean_cofu_dec: 
+	$(MAKE) -C ../cofu_dec clean -f Makefile
 
-clean____grd2dat_grd2dat: 
-	$(MAKE) -C ../grd2dat clean -f grd2dat.cbp.mak
+clean_gid_slm7: 
+	$(MAKE) -C ../gid_slm7 clean -f Makefile
 
-clean____grd2gnu_grd2gnu: 
-	$(MAKE) -C ../grd2gnu clean -f grd2gnu.cbp.mak
+clean_grd2dat: 
+	$(MAKE) -C ../grd2dat clean -f Makefile
 
-clean____grd2grd_grd2grd: 
-	$(MAKE) -C ../grd2grd clean -f grd2grd.cbp.mak
+clean_grd2gnu: 
+	$(MAKE) -C ../grd2gnu clean -f Makefile
 
-clean____mag_sl98_mag_sl98: 
-	$(MAKE) -C ../mag_sl98 clean -f mag_sl98.cbp.mak
+clean_grd2grd: 
+	$(MAKE) -C ../grd2grd clean -f Makefile
 
-clean____mag_sl99_mag_sl99: 
-	$(MAKE) -C ../mag_sl99 clean -f mag_sl99.cbp.mak
+clean_mag_sl98: 
+	$(MAKE) -C ../mag_sl98 clean -f Makefile
 
-clean____trds_99_trds_99: 
-	$(MAKE) -C ../trds_99 clean -f trds_99.cbp.mak
+clean_mag_sl99: 
+	$(MAKE) -C ../mag_sl99 clean -f Makefile
 
-clean____ter_slm5_ter_slm5: 
-	$(MAKE) -C ../ter_slm5 clean -f ter_slm5.cbp.mak
+clean_trds_99: 
+	$(MAKE) -C ../trds_99 clean -f Makefile
 
-clean____x0h_web_x0h_web: 
-	$(MAKE) -C ../x0h_web clean -f x0h_web.cbp.mak
+clean_ter_slm5: 
+	$(MAKE) -C ../ter_slm5 clean -f Makefile
 
-clean____x0p_web_x0p_web: 
-	$(MAKE) -C ../x0p_web clean -f x0p_web.cbp.mak
+clean_x0h_web: 
+	$(MAKE) -C ../x0h_web clean -f Makefile
 
-clean____stepa77_stepa77: 
-	$(MAKE) -C ../stepa77 clean -f stepa77.cbp.mak
+clean_x0p_web: 
+	$(MAKE) -C ../x0p_web clean -f Makefile
 
-.PHONY: clean____serve77_serve77 clean____brl_build_brl_build clean____brls12_brls12 clean____cofu_dec_cofu_dec clean____gid_slm7_gid_slm7 clean____grd2dat_grd2dat clean____grd2gnu_grd2gnu clean____grd2grd_grd2grd clean____mag_sl98_mag_sl98 clean____mag_sl99_mag_sl99 clean____trds_99_trds_99 clean____ter_slm5_ter_slm5 clean____x0h_web_x0h_web clean____x0p_web_x0p_web clean____stepa77_stepa77
+.PHONY: clean_serve77 clean_brl_build clean_brls12 clean_cofu_dec clean_gid_slm7 clean_grd2dat clean_grd2gnu clean_grd2grd clean_mag_sl98 clean_mag_sl99 clean_trds_99 clean_ter_slm5 clean_x0h_web clean_x0p_web clean_stepa77
 

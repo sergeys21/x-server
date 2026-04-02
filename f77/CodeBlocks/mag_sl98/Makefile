@@ -13,7 +13,7 @@ INC =
 CFLAGS = -Wall -frecursive
 RESINC = 
 LIBDIR = 
-LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a -l lapack
+LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a -Wl,-Bdynamic -llapack
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
@@ -25,7 +25,7 @@ LIB_DEBUG = $(LIB)
 LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj/Debug
 DEP_DEBUG = 
-OUT_DEBUG = bin/Debug/mag_sl99
+OUT_DEBUG = bin/Debug/mag_sl98
 
 INC_RELEASE = $(INC)
 CFLAGS_RELEASE = $(CFLAGS) -O2
@@ -36,11 +36,11 @@ LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
-OUT_RELEASE = bin/Release/mag_sl99
+OUT_RELEASE = bin/Release/mag_sl98
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl99.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre99_r.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra99r.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rd99prfm.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rfms_sss.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl98.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre98_r.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra98r.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rd99prfm.o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rfms_sss.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl99.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre99_r.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra99r.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rd99prfm.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rfms_sss.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl98.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre98_r.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra98r.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rd99prfm.o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rfms_sss.o
 
 all: debug release
 
@@ -57,14 +57,14 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl99.o: ../../X-ray2.F77/mag_sl99.for
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mag_sl99.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl99.o
+$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl98.o: ../../X-ray2.F77/mag_sl98.for
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mag_sl98.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mag_sl98.o
 
-$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre99_r.o: ../../X-ray2.F77/mmre99_r.for
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mmre99_r.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre99_r.o
+$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre98_r.o: ../../X-ray2.F77/mmre98_r.for
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mmre98_r.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmre98_r.o
 
-$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra99r.o: ../../X-ray2.F77/mmtra99r.for
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mmtra99r.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra99r.o
+$(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra98r.o: ../../X-ray2.F77/mmtra98r.for
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/mmtra98r.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/mmtra98r.o
 
 $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rd99prfm.o: ../../X-ray2.F77/rd99prfm.for
 	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ../../X-ray2.F77/rd99prfm.for -o $(OBJDIR_DEBUG)/__/__/X-ray2.F77/rd99prfm.o
@@ -88,14 +88,14 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl99.o: ../../X-ray2.F77/mag_sl99.for
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mag_sl99.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl99.o
+$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl98.o: ../../X-ray2.F77/mag_sl98.for
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mag_sl98.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mag_sl98.o
 
-$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre99_r.o: ../../X-ray2.F77/mmre99_r.for
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mmre99_r.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre99_r.o
+$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre98_r.o: ../../X-ray2.F77/mmre98_r.for
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mmre98_r.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmre98_r.o
 
-$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra99r.o: ../../X-ray2.F77/mmtra99r.for
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mmtra99r.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra99r.o
+$(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra98r.o: ../../X-ray2.F77/mmtra98r.for
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/mmtra98r.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/mmtra98r.o
 
 $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rd99prfm.o: ../../X-ray2.F77/rd99prfm.for
 	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ../../X-ray2.F77/rd99prfm.for -o $(OBJDIR_RELEASE)/__/__/X-ray2.F77/rd99prfm.o

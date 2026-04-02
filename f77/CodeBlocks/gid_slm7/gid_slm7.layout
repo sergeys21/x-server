@@ -2,9 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="../../X-ray2.F77/rfms_uuu.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../X-ray2.F77/rfmm7_rs.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="22048" topLine="439" />
+			<Cursor1 position="8124" topLine="132" />
 		</Cursor>
 	</File>
 	<File name="../../X-ray2.F77/rfms_urd7.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,19 +12,19 @@
 			<Cursor1 position="41567" topLine="766" />
 		</Cursor>
 	</File>
-	<File name="../../X-ray2.F77/rfmm7_rs.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../X-ray2.F77/rfms_uuu.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8124" topLine="132" />
-		</Cursor>
-	</File>
-	<File name="../../X-ray2.F77/gid_inm7.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="43070" topLine="831" />
+			<Cursor1 position="22048" topLine="439" />
 		</Cursor>
 	</File>
 	<File name="../../X-ray2.F77/gid_slm7.for" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="42849" topLine="1338" />
+		</Cursor>
+	</File>
+	<File name="../../X-ray2.F77/gid_inm7.for" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="43070" topLine="831" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

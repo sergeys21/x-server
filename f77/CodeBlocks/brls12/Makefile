@@ -13,7 +13,7 @@ INC =
 CFLAGS = -Wall -frecursive
 RESINC = 
 LIBDIR = 
-LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a -l lapack
+LIB = ../stepa77/libstepa77.a ../serve77/libserve77.a  -Wl,-Bdynamic -llapack
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
