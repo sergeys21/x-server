@@ -9,14 +9,20 @@ computer.
 Install needed software: GNU Fortran, CodeBlocks IDE and LAPACK. For example,
 on Ubuntu, Debian and derivative operating systems the installation command 
 will be:
- * $ sudo apt install gfortran codeblocks liblapack-dev
+```
+ $ sudo apt install gfortran codeblocks liblapack-dev
+```
 
 Add X0H environment (e.g. to ~/.bashrc):
- * $ export X0H=<path_to_x0h_folder>
- * $ export PATH=$PATH:$X0H
+```
+ $ export X0H=<path_to_x0h_folder>
+ $ export PATH=$PATH:$X0H
+```
 
 Start CodeBlocks:
- * $ codeblocks
+```
+ $ codeblocks
+```
 
 In CodeBlocks:
  - At startup choose "GNU FORTRAN Compiler" as default compiler
@@ -24,13 +30,17 @@ In CodeBlocks:
  - Go to File -> Open -> open f77/CodeBlocks/_xserver/xserver.workspace
  - Go to Build -> Build Workspace
  
-Alternatively (not using CodeBlocks):
-  * $ cd f77/CodeBlocks/_xserver
-  * $ make
+Alternatively (if not using CodeBlocks):
+```
+  $ cd f77/CodeBlocks/_xserver
+  $ make
+```
 
-In either case (CodeBlocks or make),Install compiled executables into the x0h directory:
-
- * $ f77/CodeBlocks/xserver_install_linux.pl
+In either case (CodeBlocks or make), install compiled executables into 
+the $X0H directory:
+```
+ $ f77/CodeBlocks/xserver_install_linux.pl
+```
 
 The main programs are (for documentation and details see the X-ray Server 
 webpage at https://x-server.gmca.aps.anl.gov):
