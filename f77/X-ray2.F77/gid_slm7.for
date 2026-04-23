@@ -759,7 +759,7 @@ c#######################################################
   65    format  (36x,                     a,f7.3)
         write   (3,66)
   66    format  (1x,40('-')/
-     *  ' xx = X0h data are replaced by x0/xh from profile'/
+     *  ' xx = X0h data are replaced by x0/xh from the profile'/
      *  ' ss = the substrate'/
      *  '  A = automatic calculation of da/a via Poisson ratio')
 
@@ -767,8 +767,9 @@ c Change of 2020/05:
         if (N_Top.gt.0 .AND. Abs(Daa(N_Total+1)).gt.(1.E-20)) Then !---+
            write (3,71) Daa(N_Total+1)                                !|
   71       format (/' Since substrate is specified with da/a=',e11.3,
-     *     ', adding it to all top layers'/
-     *     ' because their strains are treated as relative substrate.'/
+     *     ', adding this da/a to all'/
+     *     ' top layers because their strains are treated as',1x,
+     *     'relative to the substrate.'/
      *     1x,40('-'))                                                !|
            do l=1,N_Top !===============================+              |
               if (Abs(xh(l+1)) .gt. 0.) Then !-------+  |              |
