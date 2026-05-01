@@ -20,6 +20,9 @@ c       Parameter       (maxX0hWarnLines = 10);
 c+=========================================+
         Include         'x0h_size.inc'    !|
 c+=========================================+
+        integer   maxErr
+        Parameter (maxErr = 14)
+
         Real*8    w2e
 c https://www.physics.nist.gov/MajResFac/SURF/SURF/schwingersample.html
         Parameter (w2e=12.3984186)      !E=w2e/wave, NIST web site
@@ -50,20 +53,23 @@ c https://www.physics.nist.gov/MajResFac/SURF/SURF/schwingersample.html
      *            quest0*128, questh*128, url*64, head*6,
      *            outfile*32, query*256, parser*8,
      *            hostname*256, address*60, referer*160,
-     *            Errors(13)*56 /
+     *            Errors(maxErr+1)*56 /
      *        ' ',                                                       ! ifail=0
-     *        'No material name specified',                              ! ifail=1
-     *        'Unexpected type of x-ray input',                          ! ifail=2
-     *        'Wrong or missing x-ray wavelength/energy',                ! ifail=3
-     *        'Missing name of characteristic x-ray line',               ! ifail=4
+     *        'No material name specified (code,amor,chem)',             ! ifail=1
+     *        'Unexpected type of x-ray input (xway)',                   ! ifail=2
+     *        'Wrong or missing x-ray wavelength/energy (wave)',         ! ifail=3
+     *        'Missing name of characteristic x-ray line (line)',        ! ifail=4
      *        'Wrong or missing Bragg reflection indices (hkl)',         ! ifail=5
-     *        'No x-ray data specified',                                 ! ifail=6
+     *        'No or incorrect x-ray wavelength data specified',         ! ifail=6
      *        'Negative X-ray wavelength/energy',                        ! ifail=7
      *        'Requested reflection does not exist for this wavelength', ! ifail=8
-     *        'Incorrect or not specified material density',             ! ifail=9
-     *        'Unexpected type DB option',                               ! ifail=10
-     *        'Ambiguous material specification',                        ! ifail=11
-     *        'Incorrect X0h input parameter'/,                          ! ifail=12
+     *        'Incorrect or not specified material density (rho)',       ! ifail=9
+     *        'Unexpected Henke/Cowan/.. DB option (df1df2)',            ! ifail=10
+     *        'Ambiguous auto material specification (amor/chem/code)',  ! ifail=11
+     *        'Incorrect X0h input parameter (modeout)',                 ! ifail=12
+     *        'Incorrect X0h input parameter (detail)',                  ! ifail=13
+     *        'Unexpected type of crystal input (coway)'                 ! ifail=14
+     *                                /,
      *            Symmetry(9)*24 /
      *        'Unknown',                                                 !0
      *        'Cubic',                                                   !1
@@ -331,7 +337,7 @@ c <table border bgcolor="#f0f0f0"> -- not bright white color!
           mfail = 3                                            !|
             txt(1) = 'E R R O R:'                              !|
             txt(2) = ' '                                       !|
-          if (ifail.le.12) Then !-----------------------------+ |
+          if (ifail.le.maxErr) Then !-------------------------+ |
             txt(3) = Errors(ifail+1)                         !| |
           else !----------------------------------------------+ |
             write(txt(3),'(3a,i3)') 'Unexpected error from ',!| |
@@ -1374,7 +1380,7 @@ c 701   format(' </pre>')
           i = Len_Trim(Errors(ifail+1))                              !|
           write(lunout,19,err=14) Errors(ifail+1)(1:i),wave/(2*d8)   !|lambda/2d>1
           write(lundup,19,err=14) Errors(ifail+1)(1:i),wave/(2*d8)   !|
-        elseif (ifail.gt.0 .AND. ifail.le.11)  Then !-----------------+only 11 error messages
+        elseif (ifail.gt.0 .AND. ifail.le.maxErr)  Then !-------------+only maxErr error messages
           i = Len_Trim(Errors(ifail+1))                              !|are defined!
           write(lunout,9,err=14)  Errors(ifail+1)(1:i)               !|
           write(lundup,9,err=14)  Errors(ifail+1)(1:i)               !|
@@ -1463,19 +1469,22 @@ c=================================================================
         Real      wave2energy
         External  wave2energy
 
-c ' '                                                        ! ifail=0
-c 'No material name specified'                               ! ifail=1
-c 'Unexpected type of x-ray input'                           ! ifail=2
-c 'Wrong or missing x-ray wavelength/energy'                 ! ifail=3
-c 'Missing name of characteristic x-ray line'                ! ifail=4
-c 'Wrong or missing Bragg reflection indices (hkl)'          ! ifail=5
-c 'No x-ray data specified'                                  ! ifail=6
-c 'X-ray wavelength not in the range 0.1-10A'                ! ifail=7
-c 'Requested reflection does not exist for this wavelength'  ! ifail=8
-c 'Material density not specified'                           ! ifail=9
-c 'Unexpected type DB option'                                ! ifail=10
-c 'Ambiguous material specification'                         ! ifail=11
-c 'Incorrect X0h input parameter'                            ! ifail=12
+c ' '                                                       ! ifail=0
+c 'No material name specified (code,amor,chem)'             ! ifail=1
+c 'Unexpected type of x-ray input (xway)'                   ! ifail=2
+c 'Wrong or missing x-ray wavelength/energy (wave)'         ! ifail=3
+c 'Missing name of characteristic x-ray line (line)'        ! ifail=4
+c 'Wrong or missing Bragg reflection indices (hkl)'         ! ifail=5
+c 'No or incorrect x-ray wavelength data specified'         ! ifail=6
+c 'Negative X-ray wavelength/energy'                        ! ifail=7
+c 'Requested reflection does not exist for this wavelength' ! ifail=8
+c 'Incorrect or not specified material density (rho)'       ! ifail=9
+c 'Unexpected Henke/Cowan/.. DB option (df1df2)'            ! ifail=10
+c 'Ambiguous auto material specification (amor/chem/code)'  ! ifail=11
+c 'Incorrect X0h input parameter (modeout)'                 ! ifail=12
+c 'Incorrect X0h input parameter (detail)'                  ! ifail=13
+c 'Unexpected type of crystal input (coway)'                ! ifail=14
+
         code        = ' '
         crst        = ' '
         amor        = ' '
@@ -1517,7 +1526,7 @@ c code=Silicon xway=1 wave=1.54 line=Cu-Ka1 i1=7 i2=8 i3=9 chem=Al2O3 coway=0 rh
      *        mdetail.lt.0 .OR.                 !|0=no
      *        mdetail.gt.1) Then !-----+         |1=yes
             mdetail = -1              !|         |
-            ifail  = 12               !|         |Incorrect X0h input parameter
+            ifail  = 13               !|         |Incorrect X0h input parameter
           endif  !---------------------+         |
         endif  !---------------------------------+
 
@@ -1528,7 +1537,7 @@ c code=Silicon xway=1 wave=1.54 line=Cu-Ka1 i1=7 i2=8 i3=9 chem=Al2O3 coway=0 rh
      *        icoway.lt.-1 .OR.                 !|-1=auto, 0=crystal,
      *        icoway.gt.2) Then !------+         |1=amorphous, 2-formula
             icoway = -1               !|         |
-            ifail  = 2                !|         |Unexpected type of x-ray input
+            ifail  = 14               !|         |Unexpected type of crystal input
           endif  !---------------------+         |
         endif  !---------------------------------+
 
@@ -1567,9 +1576,9 @@ c Interpret code entered as a chemical formula:
           ifail = 1                                          !|No material name specified
         endif  !----------------------------------------------+
 
-        if (Len_Trim(code).eq.0)        Then  !--+missing keyword for material
-          ifail = 1                             !|No material name specified
-        endif  !---------------------------------+
+        if (Len_Trim(code).eq.0) Then !--+missing keyword for material
+          ifail = 1                     !|No material name specified
+        endif  !-------------------------+
 
         if (needRho) Then  !---------------------------+Chemical formula!
           Call getbykey(nkeys,keys,vals,'rho',valbuf) !|
@@ -1698,7 +1707,7 @@ c    *         nHenkeCowan.ne.7  .AND.         !| 7=Chantler(f1)    DB
      *         nHenkeCowan.ne.8  .AND.         !| 8=Chantler(f1,f2) DB
      *         nHenkeCowan.ne.10)) Then !--+    |10=compare all: 0,2,4,6,8
             nHenkeCowan = 0               !|    |
-            if (ifail.eq.0)  ifail = 10   !|    |Unexpected type DB option
+            if (ifail.eq.0)  ifail = 10   !|    |Unexpected DB option
           endif  !-------------------------+    |
         endif  !--------------------------------+
 
