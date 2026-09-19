@@ -30,8 +30,9 @@ c -------------------------------------------------------
         Character       inpname*80,
      *                  TMPfile*80,
      *                  textkeys(nkeys)*1,
-     *                  mask*76 /'*.grd'/,
      *                  line(2)*80,
+     *                  mask*76 /'*.grd'/,
+     *                  ttt*4 /'.^^^'/,
      *                  bak*4 /'.gr_'/,
      *                  data*32766
 
@@ -190,7 +191,7 @@ c         Write (*,*)                                    !|
         endif !-------------------------------------------+
 
 c 1) Produce .^^^ file with Z-scale determined
-        TMPfile = inpname(1:ln-4)//'.^^^'
+        TMPfile = inpname(1:ln-4)//ttt                  !file.grd -> file.^^^
 c See serve/OpenList.FOR (open a new ASCII file
 c with the test for "file exists"). Whether the
 c program is interactive or not, depends on the
@@ -233,7 +234,7 @@ c  5) then delete .gr_
   26        Format(' Deleting if exists [',a,'] ...')  !|         |
           endif !---------------------------------------+         |
 c 2a) Delete old BAK file (if present):                           |
-          Call DelFile (inpname(1:ln-4)//bak,ifail)              !|
+          Call DelFile (inpname(1:ln-4)//bak,ifail)              !|delete previous .gr_
 c 2b) Verify successful deleting of old BAK file:                 |
           if (FileExist(inpname(1:ln-4)//bak)) goto 551          !|
         endif !---------------------------------------------------+
@@ -243,37 +244,42 @@ c i=0          ! Success
 c i=EACCES=13  ! Permission Denied
 c i=ENOENT=2   ! File or path specified by from could not be found
 c i=EXDEV=18   ! Attempt to move a file to a different device.
-        j = 0
         i = 1
 c 3a) Rename previous GRD file to BAK:
-        do while (j .lt. 3 .AND. i .ne. 0)  !==========================+ up to 3 attempts
+        do j=1,3  !====================================================+ up to 3 attempts
           if (modebat.eq.0) Then  !-----------------------------+      |
             Write (*,27) inpname(1:ln),inpname(1:ln-4)//bak    !|      |
   27        Format(' Renaming [',a,'] -> ['a,'] ...')          !|      |
           endif !-----------------------------------------------+      |
-          i = Rename (inpname(1:ln), inpname(1:ln-4)//bak)            !|
-          j = j+1                                                     !|
-          Call Sleep_tics (1,1) !sleep 1 second (DOS/serve.lib)       !|
-ccc       CAll Sleep (1)        !sleep 1 second (DOS/portlib.lib)     !|
+          i = Rename (inpname(1:ln), inpname(1:ln-4)//bak)            !|then rename .grd -> .gr_
+          if (i.eq.0) goto 32 !----------------------------------------+--+
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|  v
         enddo  !=======================================================+
-        if (i.ne.0)                                   goto 552
+        goto 552
 
 c 3b) Check renaming:
+  32    continue
         if (modebat.eq.0) Write (*,28) inpname(1:ln-4)//bak,'is created'
   28    Format(' Checking if [',a,'] ',a,' ...')
-        if (FileExist(inpname(1:ln-4)//bak)) Then !--------------------+
-           if (modebat.eq.0) write (*,*) ' ...OK, file is created'    !|
-        else !---------------------------------------------------------+
-           if (modebat.eq.0) write (*,*) ' ...ERR, no such file'      !|
-           goto 553                                                   !|
-        endif !--------------------------------------------------------+
-        if (modebat.eq.0) Write (*,28) inpname(1:ln),'is renamed'
+        do j=1,5  !====================================================+ up to 3 attempts
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|
+          if (FileExist(inpname(1:ln-4)//bak)) Then !----------------+ |does file.gr_ exist?
+            if (modebat.eq.0) write (*,*) ' ...OK, file is created' !| |
+            goto 33 !--------------------------------------------------+--+
+          endif !----------------------------------------------------+ |  v
+        enddo  !=======================================================+
+        if (modebat.eq.0) write (*,*) ' ...ERR, no such file'
+        goto 553
+
+  33    continue
+        if (modebat.eq.0) Write (*,28) inpname(1:ln),'is removed'
         if (.NOT. FileExist(inpname(1:ln))) Then !---------------------+
-           if (modebat.eq.0) write (*,*) ' ...OK, file is removed'    !|
+          if (modebat.eq.0) write (*,*) ' ...OK, file is removed'     !|
         else !---------------------------------------------------------+
-           if (modebat.eq.0) write (*,*) ' ...ERR, file still exists' !|
-           Call DelFile (inpname(1:ln),ifail)                         !|try to delete
-           if (FileExist(inpname(1:ln))) goto 554                     !|deleting failed
+          if (modebat.eq.0) write (*,*) ' ...ERR, file still exists'  !|
+          Call DelFile (inpname(1:ln),ifail)                          !|try to delete
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|
+          if (FileExist(inpname(1:ln))) goto 554                      !|deleting failed
         endif !--------------------------------------------------------+
 
 c Rename function status codes:
@@ -283,27 +289,36 @@ c i=ENOENT=2   ! File or path specified by from could not be found
 c i=EXDEV=18   ! Attempt to move a file to a different device.
 
 c 4a) Rename temp file .^^^ as new GRD:
-        if (modebat.eq.0) Write (*,27) TMPfile(1:ln), inpname(1:ln)
-        i = Rename (TMPfile(1:ln), inpname(1:ln))
-        if (i.ne.0)                                   goto 555
-        Call Sleep_tics (1,1)           !sleep 1 second (DOS/serve.lib)
-c ccc   Call Sleep (1)                  !sleep 1 second (Win/portlib.lib)
+        do j=1,3  !====================================================+ up to 3 attempts
+          if (modebat.eq.0) Write (*,27) TMPfile(1:ln), inpname(1:ln) !|
+          i = Rename (TMPfile(1:ln), inpname(1:ln))                   !|
+          if (i.eq.0) goto 42 !----------------------------------------+--+
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|  v
+        enddo  !-------------------------------------------------------+
+        goto 555
 
 c 4b) Check renaming:
+ 42    continue
         if (modebat.eq.0) Write (*,28) inpname(1:ln),'is created'
-        if (FileExist(inpname(1:ln)) ) Then !--------------------------+
-           if (modebat.eq.0) write (*,*) ' ...OK, file is created'    !|
-        else !---------------------------------------------------------+
-           if (modebat.eq.0) write (*,*) ' ...ERR, no such file'      !|
-           goto 556                                                   !|
-        endif !--------------------------------------------------------+
-        if (modebat.eq.0) Write (*,28) TMPfile(1:ln),'is renamed'
+        do j=1,5  !====================================================+ up to 3 attempts
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|
+          if (FileExist(inpname(1:ln)) ) Then !----------------------+ |
+            if (modebat.eq.0) write (*,*) ' ...OK, file is created' !| |
+            goto 43 !--------------------------------------------------+--+
+          endif !----------------------------------------------------+ |  v
+        enddo  !=======================================================+
+        if (modebat.eq.0) write (*,*) ' ...ERR, no such file'
+        goto 556
+
+  43    continue
+        if (modebat.eq.0) Write (*,28) TMPfile(1:ln),'is renamed'   
         if (.NOT. FileExist(TMPfile(1:ln))) Then !---------------------+
-           if (modebat.eq.0) write (*,*) ' ...OK, file is removed'    !|
+          if (modebat.eq.0) write (*,*) ' ...OK, file is removed'     !|
         else !---------------------------------------------------------+
-           if (modebat.eq.0) write (*,*) ' ...ERR, file still exists' !|
-           Call DelFile (TMPfile(1:ln),ifail)                         !|try to delete
-           if (FileExist(TMPfile(1:ln))) goto 557                     !|deleting failed
+          if (modebat.eq.0) write (*,*) ' ...ERR, file still exists'  !|
+          Call DelFile (TMPfile(1:ln),ifail)                          !|try to delete
+          Call Sleep_tics (1,1)         !sleep 1 second (DOS/serve.lib)|
+          if (FileExist(TMPfile(1:ln))) goto 557                      !|deleting failed
         endif !--------------------------------------------------------+
 
 c 5) Delete BAK file (.gr_):
@@ -357,7 +372,7 @@ c       ERROR PROCESSING:
 
   407   continue
         write (txt,171) inpname(1:ln), nx1, ncc
-  171   format('GRD2GRD  E R R O R:'//
+  171   format(/'GRD2GRD  E R R O R:'/
      *         'File = ',a/
      *         'Columns mismatch in input file:'/
      *         'Claimed  = ',i7/
@@ -423,8 +438,8 @@ c       ERROR PROCESSING:
         goto    998
 
   998   continue
-        txt(1) = 'GRD2GRD  E R R O R:'
-        txt(2) = ' '
+        txt(1) = ' '
+        txt(2) = 'GRD2GRD  E R R O R:'
   999   continue
         Call Message (txt,lines,2)
         goto 100
