@@ -87,11 +87,11 @@ c for Compaq/MS fortran                                     |
                 m = m-l-1                          !|  |  | |
 c Remove quotes, if present                         |  |  | |
                 if (vals(j)(1:1).eq.'"' .AND.      !|  |  | |
-     *              vals(j)(m:m).eq.'"') Then !--+  |  |  | |
-                  vals(1:1) = ' '               !|  |  |  | |
-                  vals(m:m) = ' '               !|  |  |  | |
-                  Call TxtShift(vals(1:m),n,m)  !|  |  |  | |
-                endif !--------------------------+  |  |  | |
+     *              vals(j)(m:m).eq.'"') Then !---+ |  |  | |
+                  vals(j)(1:1) = ' '             !| |  |  | |
+                  vals(j)(m:m) = ' '             !| |  |  | |
+                  Call TxtShift(vals(j)(1:m),n,m)!| |  |  | |
+                endif !---------------------------+ |  |  | |
               endif !-------------------------------+  |  | |
               nfound = nfound + 1                     !|  | |
               goto 7 !--------+                        |  | |
