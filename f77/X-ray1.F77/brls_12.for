@@ -328,11 +328,15 @@ c even (2,4,6,8,..) indices correspond to PI-polarization:
           enddo    !====================================+|
         enddo    !=======================================+
 
-c Unit matrix at the left lower side with the respect to the diagonal:
-          do i = nReflexes2+1, Task_Size  !===+
-            Scatt_Re (i,i) = 1.              !|
-            Scatt_Im (i,i) = 0.              !|
-          enddo    !==========================+
+c Unit matrix at the left lower side with the respect to the diagonal
+c (all elements are set; the off-diagonal ones were left undefined):
+          do i = nReflexes2+1, Task_Size  !=====+
+            do j = nReflexes2+1, Task_Size !=+  |
+              Scatt_Re (i,j) = 0.           !|  |
+              Scatt_Im (i,j) = 0.           !|  |
+            enddo !|=========================+  |
+            Scatt_Re (i,i) = 1.                !|
+          enddo    !============================+
 
 c Zero rectangular matrices at the left along the anti-diagonal:
           do i = nReflexes2+1, Task_Size !====+
@@ -362,6 +366,14 @@ c Zero rectangular matrices at the left along the anti-diagonal:
 c                    +================+
 c                    |  Right Matrix  |
 c                    +================+
+
+c Start from zero matrix (only the diagonal and the surface
+c coupling elements are set below):
+          do i = 1, Task_Size   !==============+
+            do j = 1, Task_Size   !==========+ |
+              Gamma_Matr (i,j) = 0.         !| |
+            enddo  !=========================+ |
+          enddo    !===========================+
 
           Placement = 1
           do i_Ref = 1, nReflexes    !================+
