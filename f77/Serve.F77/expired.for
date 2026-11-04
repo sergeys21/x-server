@@ -6,7 +6,7 @@ c date,month,year - given day, month and year (all are integers)
 c
 c                   Author: S.Stepanov
 c-----------------------------------------------------
-        Integer         l, j
+        Integer         l, j, iy, im, id
         Integer*2       day_last,  month_last,  year_last,
      *                  day_today, month_today, year_today,
      *                  idate(12), y2k/2000/
@@ -18,8 +18,12 @@ c-----------------------------------------------------
         Logical         IsLate
         External        IsLate
 
-c Get current date:
-        Call    GetDat (year_today, month_today, day_today)
+c Get current date (GetDat returns default integers, so use
+c temporaries to avoid writing 4-byte values into Integer*2):
+        Call    GetDat (iy, im, id)
+        year_today  = int(iy,2)
+        month_today = int(im,2)
+        day_today   = int(id,2)
 c The year is returned in the format like: 1998.
 c However, after 2000 it might be something like: 0002
         if (year_today.lt.1900) year_today = year_today+y2k
