@@ -303,9 +303,15 @@ c                                                                v
 c ================================================================ Begin added 2014.02.25
 c Build the second k0:
         Call DVecCon (h1xh2, -1.D0, h1xh2_inv, ii)
-        Call DVecSum2 (k0_copl, 1.D0,
-     *                 h1xh2_inv,  Uncopl,
-     *                 k0(1,2), ii)
+        if (ixway.le.3) Then !-------------------------+
+          Call DVecSum2 (k0_copl, 1.D0,               !|
+     *                   h1xh2_inv,  Uncopl,          !|
+     *                   k0(1,2), ii)                 !|
+        else !-----------------------------------------+
+c The coplanar (ixway=4) and reflection-3 (ixway=5)    |
+c cases have a single k0 and Uncopl is not defined:    |
+          Call DVecCopy_dd (k0(1,1), k0(1,2), ii)     !|
+        endif !----------------------------------------+
 
 c Flags for problematic situations:
         normal_inverted = 0
@@ -328,7 +334,8 @@ c None of the two k0 can enter the crystal. Swap normal     |
           s8(2) = -s8(2)                                   !|
         endif !---------------------------------------------+
 
-        if     (s8(1).gt.0. .AND. s8(2).gt.0.) Then !------------------+
+        if     (s8(1).gt.0. .AND. s8(2).gt.0. .AND.
+     *          ixway.le.3) Then !-------------------------------------+
 c We have two solutions for k0. User will have to choose:              |
           found_two_k0 = 1                                            !|
           do n=1,2 !================================================+  |

@@ -627,38 +627,45 @@ c Print input parameters from 'BrL_12.inp':
 c Convolution of INTERNAL surface normal with k0:
         s8 = DVecSca2 (k_vectors(1,Incident_Place),
      *                 Surface_Normal, ii)
+c The coplanar (ixway=4) and reflection-3 (ixway=5) cases have
+c a single k0 and Uncoplanar is not defined: inverting [H1*H2]
+c cannot help there, and only the surface normal may be inverted.
         if (s8.lt.0.)   Then   !--------------------------------+
-          write (luntbl,441,err=301)                           !|
-  441     format(' WARNING: Inverting [H1*H2]')                !|
-          Call DVecCon (h1xh2, -1.D0, h1xh2, ii)               !|
-c Recaclulate k0 and its convolution                            |
-c with INTERNAL surface normal:                                 |
-          Call DVecSum2 (k_coplanar, 1.D0,                     !|
-     *                   h1xh2,      Uncoplanar,               !|
-     *                   k_vectors(1,Incident_Place),          !|
-     *                   ii)                                   !|
-          s8 = DVecSca2 (k_vectors(1,Incident_Place),          !|
-     *                   Surface_Normal, ii)                   !|
+          if (ixway.le.3) Then !-----------------------------+  |
+          write (luntbl,441,err=301)                        !|  |
+  441     format(' WARNING: Inverting [H1*H2]')             !|  |
+          Call DVecCon (h1xh2, -1.D0, h1xh2, ii)            !|  |
+c Recaclulate k0 and its convolution                         |  |
+c with INTERNAL surface normal:                              |  |
+          Call DVecSum2 (k_coplanar, 1.D0,                  !|  |
+     *                   h1xh2,      Uncoplanar,            !|  |
+     *                   k_vectors(1,Incident_Place),       !|  |
+     *                   ii)                                !|  |
+          s8 = DVecSca2 (k_vectors(1,Incident_Place),       !|  |
+     *                   Surface_Normal, ii)                !|  |
+          endif !--------------------------------------------+  |
 c If did not help, restore [h1xh2] and revert surface normal:   |
           if (s8.lt.0.)  Then  !----------------------------+   |
             write (luntbl,442,err=301)                     !|   |
   442       format(' WARNING: Inverting Surface Normal')   !|   |
-            Call DVecCon (h1xh2, -1.D0, h1xh2, ii)         !|   |
             s8 = -s8                                       !|   |
             do  i=1,ii   !==============================+   |   |
               nBaseNormal(i)     = -nBaseNormal(i)     !|   |   |
               nReperDirection(i) = -nReperDirection(i) !|   |   |
               Surface_Normal(i)  =- Surface_Normal(i)  !|   |   |
             enddo   !===================================+   |   |
-            Call DVecSum2(k_coplanar, 1.D0,                !|   |
-     *                    h1xh2,      Uncoplanar,          !|   |
-     *                    k_vectors(1,Incident_Place),     !|   |
-     *                    ii)                              !|   |
+            if (ixway.le.3) Then !-----------------------+  |   |
+              Call DVecCon (h1xh2, -1.D0, h1xh2, ii)    !|  |   |
+              Call DVecSum2(k_coplanar, 1.D0,           !|  |   |
+     *                      h1xh2,      Uncoplanar,     !|  |   |
+     *                      k_vectors(1,Incident_Place),!|  |   |
+     *                      ii)                         !|  |   |
+            endif !--------------------------------------+  |   |
           endif !-------------------------------------------+   |
         endif !-------------------------------------------------+
 
 c If non-coplanar case:
-        if (s8.gt.0.) Then !-----------------------------------------+
+        if (s8.gt.0. .AND. ixway.le.3) Then !------------------------+
 c Check if we possibly have two solutions for k0:                    |
           Call DVecCon (h1xh2, -1.D0, h1xh2_inv, ii)                !|
 c Another k0 candidate:                                              |
