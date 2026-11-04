@@ -31,7 +31,7 @@ c and L=10,000~A  we get: p=40.
 
         if (q.le.RangeCos(2))      Then  !--------------+
           Cos_Integral = Finli (q,ArrCos,RangeCos(1),  !|
-     *                                StepCos,nptCos)  !|
+     *                           StepCos,Int(nptCos))  !|
         else  !-----------------------------------------|
 c cccccc  Cos_Integral = 0.                            !|
 c cccccc  n1 = 0.8*nptCos                              !|
