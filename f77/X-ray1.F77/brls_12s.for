@@ -489,7 +489,7 @@ c 2 = take the second found
 c 3 = take the one with the smallest |gamma0| (smallest angle to the surface)
 c 4 = take the one with the largest |gamma0| (largest angle to the surface)
         txt(7) = 'Multiple k0 choice flag [0-2]'
-        k0_choice = 0                                   !old-style default
+        k0_choice = 1                                   !default if the line is missing
         Call    LineLoop (luninp,line,wrk,*10)
         Call    rdInt   (ipar,1,wrk,i)
         if (i.ne.0)             goto 100
